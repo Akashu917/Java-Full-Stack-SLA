@@ -1,0 +1,151 @@
+1.What is HTML?
+
+ *HTML (Hyper Text Markup Language) is the standard language used to create web pages it tells a browser how to structure content like text , images, links, and videos.
+ *HTML uses tags to organize content.
+Example: <h1> today my first day of class in html </h1>.
+
+History of HTML?
+ *HTML was created by Tim Berners-Lee in 1991 while working at CERN.
+Key milestones:
+1991	First HTML    Basic document structure
+1995	HTML 2.0      Standardized version
+1997	HTML 4	      Added styling support
+2014	HTML5	      Modern features (video, audio, canvas)
+Today most websites use HTML5.
+
+Why HTML is Used?
+
+HTML is used because it:
+*Structures web content
+*Works with browsers
+*Supports multimedia
+*Works with CSS (design)
+*Works with JavaScript (interactivity)
+
+Think of it like this:
+HTML → structure
+CSS → style
+JavaScript → behavior
+
+2)
+1.<!DOCTYPE html>
+*Tells the browser that the document uses HTML5.
+Example: <!DOCTYPE html>
+
+
+2.<html>
+*The root element of the page.
+*Everything inside the webpage goes inside <html>.
+Example:<html> </html>
+
+3.<head>
+ *Contains metadata (information about the page).
+Examples inside <head>:
+*title
+*character set
+*CSS links
+
+Example:
+<head>
+<title>My Website</title>
+</head>
+
+4.<body>
+ *Contains all visible content.
+Example:
+<body>
+<h1>Welcome</h1>
+<p>This is my website</p>
+</body>
+
+*Basic simple HTML page
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My First Page</title>
+  </head>
+    <body>
+
+      <h1>Hello World</h1>
+      <p>This is my first HTML page.</p>
+
+    </body>
+</html>
+
+3. Root Element <html>
+ *The root element wraps the entire HTML document.
+Example:
+
+<html>
+    <head>
+        <title>My website</title>
+    </head>
+
+    <body>
+        <h1> dashboard </h1>
+    </body>
+</html>
+
+4.Container element
+ *In HTML, container elements are used to group other elements together. They help structure your webpage so it’s easier to style with CSS and manage with JavaScript. Two of the most common container elements are <div> and <section>.
+
+1.<div> – Generic Container
+*The <div> element is a non-semantic container.It simply groups elements without adding meaning.
+
+Example :
+<div class="card">
+  <h2>Product Name</h2>
+  <p>This is a product description.</p>
+  <button>Buy Now</button>
+</div>
+When to use <div>
+
+Use it when:
+*You need a container for styling (CSS).
+*You need to group elements but they don’t have a specific meaning.
+*You want to create layout blocks.
+
+2.<section> – Semantic Container
+ *The <section> element is a semantic container. It represents a thematic grouping of content.
+Usually, a <section> has a heading.
+
+Example:
+<section>
+  <h2>About Us</h2>
+  <p>We build modern websites and apps.</p>
+</section>
+
+When to use <section>
+Use it when:
+*The content forms a distinct topic.
+*The section has a heading.
+*It is a logical part of the page.
+
+4. Practice Exercise
+
+<body>
+
+  <section>
+    <h1>My Website</h1>
+  </section>
+
+  <section>
+    <h2>home</h2>
+
+    <div>
+      <h3>Web Development</h3>
+      <p>I create responsive websites.</p>
+    </div>
+
+    <div>
+      <h3>UI Design</h3>
+      <p>I design modern interfaces.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Email: akashhdec2004@gmail.com</p>
+  </section>
+
+</body>
