@@ -1,0 +1,162 @@
+1. What Are Semantic Tags?
+
+Ans: Semantic HTML tags clearly describe the meaning of the content inside them.
+Examples of semantic tags:
+	<header>
+	<footer>
+	<article>
+	<section>
+	<nav>
+	<main>
+Example:
+
+	<header>
+  		<h1>My Website</h1>
+	</header>
+
+Here the browser, search engines, and screen readers know that this section is the header of the page.
+
+2. What Are Non-Semantic Tags?
+
+Ans: Non-semantic tags do not describe the content meaning. They only help with layout or grouping.
+
+Examples:
+
+	<div>
+	<span>
+
+Example:
+
+	<div>
+  	   <h1>My Website</h1>
+	</div>
+
+Here we don't know if the <div> is a header, footer, sidebar, or something else.
+
+3. Semantic vs Non-Semantic Tags:
+
+| Feature       | Semantic Tags                       | Non-Semantic Tags          |
+| ------------- | ----------------------------------- | -------------------------- |
+| Meaning       | Describe the content                | No meaning                 |
+| SEO           | Better for search engines           | Not helpful                |
+| Accessibility | Screen readers understand structure | Harder for assistive tools |
+| Examples      | `<header>`, `<footer>`, `<article>` | `<div>`, `<span>`          |
+
+4. Why Semantic Tags Are Important:
+1)Better SEO
+
+Ans: Search engines understand your page structure better.
+
+Example:
+
+	<header> → site title
+	<nav> → navigation menu
+	<article> → main content
+	<footer> → contact info
+
+2) Better Accessibility
+
+Ans: Screen readers used by visually impaired users rely on semantic structure.
+
+3)Cleaner Code
+
+Ans: Developers can easily understand the layout.
+
+
+2).Practice creating a webpage with a header and footer. Add title, logo, and footer info
+Ans:
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>task of html</title>
+    <link rel="icon" type="image/x-icon" href="logo.web" />
+    <style>
+        p   {
+            font-size: large;
+            text-align: justify;
+            background-color: rgba(249, 236, 53, 0.762);
+        }  
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="logo.web" alt="Website Logo" />
+      <h1 style="background-color: blue; color: white">Soft Logic Academy</h1>
+    </header>
+
+    <main>
+      <h2 style="background-color: antiquewhite; color: black">Welcome!</h2>
+      <p style="font-size: large">
+        Generative AI has fundamentally reshaped digital discovery.
+        Increasingly, decision-makers begin their research on platforms like
+        ChatGPT, Gemini and Perplexity AI before ever visiting a brand’s
+        website. Search engines now generate summaries, comparisons and
+        contextual responses directly on results pages.
+      </p>
+    </main>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ipsam hic
+      illo commodi quos voluptatem ducimus obcaecati voluptas ad voluptatum
+      mollitia earum quae distinctio veritatis sunt at error impedit,
+      necessitatibus porro praesentium, cum consequuntur rem? Pariatur, illum
+      voluptatibus dolorum iure, sequi inventore facilis cupiditate asperiores
+      reprehenderit expedita earum, dolorem nobis enim officia modi magnam
+      veniam dolores voluptates assumenda ipsam ipsa nesciunt suscipit sunt non?
+      Placeat possimus laborum <p> maiores temporibus id rerum officia quisquam
+      error fugiat, atque optio iure praesentium! Ratione tempora assumenda
+      cupiditate fugit mollitia praesentium eveniet iste necessitatibus
+      molestiae maxime impedit, atque, excepturi unde, laudantium placeat nemo
+      aperiam quas fugiat in ad repudiandae? Tempore facilis corrupti harum
+      molestias porro, cupiditate asperiores reprehenderit error rerum sequi
+      nostrum culpa! Neque laboriosam aut</p> <p> sequi voluptates quaerat possimus
+      quod magnam dignissimos? Totam voluptatem perferendis excepturi, eius
+      quasi non nesciunt dolorem cupiditate nobis sed saepe. Corrupti,
+      temporibus praesentium tenetur dolore animi quis atque aliquam nemo
+      explicabo! Qui ab fugit facere. Dolorem inventore autem cum suscipit aut
+      architecto quam, explicabo aspernatur unde ad. Assumenda dolores a sunt
+      fugiat natus modi harum totam. Eos beatae rem atque consectetur similique
+      incidunt quo voluptas ipsum repellat aperiam dolore quis totam quaerat
+      ullam asperiores dolorum quae culpa laboriosam dolores.</p> <p>sint cupiditate,
+      nisi minima. Dignissimos adipisci assumenda beatae vero omnis nostrum
+      vitae optio iusto velit aliquid, quae atque aspernatur dolorem commodi
+      eaque sapiente voluptatibus accusantium mollitia unde quia reiciendis quam
+      enim. Sequi, nobis! Quod eius ea dolor hic aut nesciunt officia eum quidem
+      commodi assumenda, tenetur eligendi natus, accusantium id deserunt! Modi
+      nostrum ut, amet atque laborum facere debitis sapiente. Culpa, alias
+      rerum. Dolorum, nisi nostrum! Iste ab quidem laboriosam cumque</p>
+
+      <p>consequuntur dignissimos odio consectetur necessitatibus qui temporibus
+      nesciunt est, possimus nulla eius sapiente vero voluptates odit ipsum
+      neque aspernatur itaque, sint ea! Nobis praesentium, sed, provident nulla
+      esse eum eius numquam suscipit recusandae, maxime voluptatum. Ratione
+      facere blanditiis dolor cupiditate expedita, omnis sunt doloribus
+      recusandae dignissimos voluptatem dicta dolorem itaque quasi deserunt
+      harum officia iusto vitae ipsa fugiat asperiores necessitatibus, aliquid
+      et consequatur.</p><p> Veritatis molestias eaque, sunt, voluptates nobis, autem
+      omnis rem id non commodi ex. Quidem possimus provident odit quibusdam sint
+      iure dolorum nihil blanditiis aperiam aliquam facere, incidunt error
+      voluptate eveniet quam ex. Ipsum itaque earum nisi possimus tempora!
+      Delectus enim labore perferendis optio cupiditate aut dolorem tenetur
+      eligendi quo, nesciunt deserunt adipisci laborum culpa consequuntur quos
+      consequatur eveniet eaque voluptatibus? Provident illum mollitia nemo
+      nulla iure laboriosam totam. </p><p>Labore, odio? Ut facere mollitia, quaerat
+      sunt corporis cum sint fugiat delectus, voluptate, distinctio nostrum
+      minus debitis laboriosam nesciunt enim eligendi pariatur quae. Atque
+      voluptatum adipisci dicta officiis ratione in ut eligendi id ab, veniam
+      cum corporis neque unde repellendus quasi, laborum delectus est labore?
+      Ullam temporibus debitis exercitationem numquam quaerat aut, facere
+      consequatur unde eveniet corporis magni porro libero placeat, est iure!
+      Iste nesciunt itaque ullam nostrum corrupti totam tempore enim ad eveniet
+      neque, amet,</p>
+    </p>
+
+    <hr />
+
+    <footer style="background-color: rgb(79, 79, 77); color: rgb(246, 244, 244); padding: 10px; margin: 10px">
+      <article>© 2026 SLA News. All rights reserved. </article>
+      <article>Contact:slainfo@gmail.com</article>
+    </footer>
+  </body>
+</html>
