@@ -1,0 +1,500 @@
+1. Difference Between <b> and <strong>
+
+Ans:	<b> → visual bold styling only
+	<strong> → semantic importance (important text)
+
+Example meaning:
+
+	<b> → styling
+	<strong> → screen readers treat it as important
+
+2. <i> vs <em>
+
+Ans:	<i> → italic style only
+	<em> → emphasized text (semantic meaning)
+
+	<p>
+	The movie <i>Interstellar</i> is a science fiction film.
+	But I <em>really</em> love its soundtrack.
+	</p>
+Here:
+	<i> is for titles or style
+	<em> adds emphasis
+
+3. <u>, <mark>, <small>
+
+Ans:	<u> → underline
+	<mark> → highlight text
+	<small> → side notes or smaller text
+
+	<p>
+	Please read the <u>instructions carefully</u>.
+	The deadline is <mark>tomorrow</mark>.
+	<small>(Late submissions may not be accepted)</small>
+	</p>
+
+4. Hyperlinks <a>
+Ans: External link
+	<a href="https://www.google.com">Visit Google</a>
+
+Ans: Internal link
+	<a href="about.html">Go to About Page</a>
+
+Ans: Back to top link
+	<a href="#top">Back to Top</a>
+
+Example with page anchor:
+
+<h1 id="top">My Website</h1>
+
+<p>Some long content here...</p>
+
+<a href="#top">Back to Top</a>
+
+5. <button> Usage
+Ans: Button inside a form
+	<form>
+	<button type="submit">Submit Form</button>
+	</form>
+Ans: Button as UI element
+	<button onclick="alert('Button clicked!')">
+	Click Me
+	</button>
+
+Attributes:
+
+	type="submit"
+
+	type="button"
+
+	type="reset"
+
+6.Explore different input types (text, password, email, checkbox, radio). Build a mini form.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Types Demo</title>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+        form {
+            max-width: 450px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: #f9f9f9;
+        }
+        fieldset {
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        legend {
+            font-weight: 700;
+        }
+        label {
+            display: block;
+            margin-top: 0.75rem;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .inline-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .inline-group label {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        .inline-group input {
+            margin-right: 0.35rem;
+        }
+        button {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 6px;
+            background: #1a73e8;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #1558b0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Input Types Demo</h1>
+    <p>Try filling in the form below to explore different HTML input types.</p>
+
+    <form action="#" method="GET">
+        <fieldset>
+            <legend>Basic inputs</legend>
+
+            <label for="name">Name (text)</label>
+            <input id="name" name="name" type="text" placeholder="Enter your name" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter a password" required>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+            <label for="age">Age (number)</label>
+            <input id="age" name="age" type="number" min="0" max="120" placeholder="e.g., 25">
+        </fieldset>
+
+        <fieldset>
+            <legend>Choices</legend>
+
+            <div class="inline-group">
+                <label>
+                    <input type="checkbox" name="subscribe" value="yes">
+                    Subscribe to newsletter
+                </label>
+                <label>
+                    <input type="checkbox" name="terms" value="accepted" required>
+                    Accept terms
+                </label>
+            </div>
+
+            <div class="inline-group">
+                <span>Preferred contact:</span>
+                <label>
+                    <input type="radio" name="contact" value="email" checked>
+                    Email
+                </label>
+                <label>
+                    <input type="radio" name="contact" value="phone">
+                    Phone
+                </label>        
+                <label>
+                    <input type="radio" name="contact" value="none">
+                    No contact
+                </label>
+            
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>     
+</body>
+</html>
+
+7. Learn how to use <textarea> for multi-line input. Practice making a feedback form.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f3f4f6;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      padding: 1.75rem;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+    p {
+      margin-top: 0.25rem;
+      margin-bottom: 1.2rem;
+      color: #4b5563;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #111827;
+    }
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.4rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.4;
+      box-sizing: border-box;
+    }
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .row > div {
+      flex: 1 1 200px;
+    }
+    button {
+      margin-top: 1.25rem;
+      padding: 0.75rem 1.2rem;
+      background: #2563eb;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <section class="container">
+    <h1>Feedback Form</h1>
+    <p>We value your input. Please share feedback about your experience.</p>
+
+    <form action="#" method="POST">
+      <div class="row">
+        <div>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g., Jane Doe" required />
+        </div>
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <label for="rating">How would you rate your experience?</label>
+      <select id="rating" name="rating" required>
+        <option value="" disabled selected>Select rating</option>
+        <option value="5">Excellent (5)</option>
+        <option value="4">Good (4)</option>
+        <option value="3">Okay (3)</option>
+        <option value="2">Poor (2)</option>
+        <option value="1">Terrible (1)</option>
+      </select>
+
+      <label for="comments">Comments (use textarea for multi-line input)</label>
+      <textarea id="comments" name="comments" placeholder="Type your feedback here..." required></textarea>
+
+      <label>
+        <input type="checkbox" name="subscribe" value="yes" />
+        Send me occasional updates
+      </label>
+
+      <button type="submit">Send Feedback</button>
+    </form>
+  </section>
+</body>
+</html>
+
+8. Combine formatting and interactive tags to create a styled feedback form (with bold labels, highlighted text, inputs, and buttons).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Styled Feedback Form</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #eef2ff 0%, #dbeafe 100%);
+      color: #1f2937;
+    }
+    .container {
+      max-width: 520px;
+      margin: 2.5rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      color: #1d4ed8;
+    }
+    p {
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 1rem;
+      margin-bottom: 0.35rem;
+      color: #0f172a;
+    }
+    label span {
+      display: inline-block;
+      background: linear-gradient(90deg, #fde68a, #fde047);
+      color: #92400e;
+      padding: 0.1rem 0.35rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    }
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .hint {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-top: 0.25rem;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    button {
+      padding: 0.75rem 1.2rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+      color: white;
+      flex: 1 1 160px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(30, 64, 175, 0.3);
+    }
+    button:active {
+      transform: translateY(0px);
+      box-shadow: 0 6px 12px rgba(30, 64, 175, 0.25);
+    }
+    .secondary {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .secondary:hover {
+      background: #cbd5e1;
+    }
+    .tagline {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #1e3a8a;
+      font-weight: 700;
+      margin-top: 1rem;
+      margin-bottom: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Styled Feedback Form</h1>
+    <div class="tagline">Use <strong>&lt;textarea&gt;</strong> for multi-line feedback</div>
+    <p>Fill in your details and share what you liked (or didn’t). This form combines formatting + interactive form tags.</p>
+
+    <form action="#" method="post">
+      <label for="name">
+        Your name
+        <span>required</span>
+      </label>
+      <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+
+      <label for="email">
+        Email address
+        <span>required</span>
+      </label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+      <label for="experience">
+        Experience rating
+        <span>1–5</span>
+      </label>
+      <select id="experience" name="experience" required>
+        <option value="" disabled selected>Choose one</option>
+        <option value="5">5 – Excellent</option>
+        <option value="4">4 – Great</option>
+        <option value="3">3 – Good</option>
+        <option value="2">2 – Fair</option>
+        <option value="1">1 – Needs improvement</option>
+      </select>
+      <div class="hint">Tip: Try selecting “Excellent” to see the highlight.</div>
+
+      <label for="comments">
+        Your feedback
+        <span>multi-line</span>
+      </label>
+      <textarea id="comments" name="comments" placeholder="Write what you liked, or what we could improve..." required></textarea>
+
+      <label>
+        <input type="checkbox" name="followUp" value="yes" />
+        I’d like someone to follow up with me
+      </label>
+
+      <div class="controls">
+        <button type="submit">Submit feedback</button>
+        <button type="reset" class="secondary">Clear form</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
+
