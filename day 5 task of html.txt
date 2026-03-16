@@ -1,0 +1,162 @@
+1. HTML Attributes?
+
+Ans:  Attributes provide extra information about an HTML element.
+      They are placed inside the opening tag.
+
+Example:
+
+	<a href="https://www.google.com">Visit Google</a>
+
+	href → attribute
+
+"https://www.google.com" → value
+
+Common Attributes:
+	Attribute:	Purpose:
+	href	 	link destination
+	src		image/file source
+	alt		alternative text for images
+	title		tooltip text
+	class		group elements for styling
+	id		unique identifier
+
+2. Using class for Multiple Elements?
+
+Ans: A class can be used on many elements.
+
+HTML code:
+<style>
+  .highlight{
+  color: red;
+  font-weight: bold;
+}
+</style>
+
+<p class="">First class stand</p>
+<p class="">Second class stand</p>
+<p class="">Third class stand</p>
+
+3. Using id (Unique)
+
+Ans: id must be unique on a page.
+
+HTML code:
+<style>
+	#main{
+  	color: blue;
+	}
+</style>
+<h1 id="main">My Website</h1>
+
+Used often for:
+
+	JavaScript targeting
+	page navigation
+
+4. Special Attributes?
+
+Ans: Title (Tooltip)
+	<p title="This appears when you hover">Hover over me</p>
+
+Ans: Lang
+	<html lang="en">
+
+Ans: Style
+	<p style="color:green;">Green text</p>
+
+Ans: Hidden
+	<p hidden>This is hidden</p>
+
+
+5. Creating Hyperlinks?
+
+Ans: Absolute Link (External Website)
+	<a href="https://www.wikipedia.org">Open Wikipedia</a>
+
+Ans: Relative Link (Local File)
+	<a href="about.html">About Page</a>
+
+6. Extra Link Attributes?
+
+Ans: Open in New Tab
+	<a href="https://www.google.com" target="_blank">Google</a>
+
+Ans: Download File
+	<a href="file.pdf" download>Download PDF</a>
+
+Ans: Email Link
+	<a href="mailto:someone@example.com">Send Email</a>
+
+7. Image Attributes?
+
+Ans: Basic Image
+	<img src="cat.jpg" alt="A cute cat">
+
+	src → image location
+
+	alt → text if image fails or for accessibility
+
+8. Image Dimensions?
+
+Ans: <img src="cat.jpg" alt="A cute cat" width="300px" height="200px">
+
+Clickable Image?
+
+Ans: Image inside a link:
+
+	<a href="https://www.google.com">
+	<img src="logo.png" alt="Google logo"></a>
+
+
+9.Create a webpage with navigation links, multiple sections using IDs, and images with proper alt text and titles?
+Ans:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
+        nav { background: #0a80ff; padding: 16px 0; text-align: center; }
+        nav a { color: #f5f5f5; text-decoration: none; margin: 0 18px; font-weight: 500; padding: 8px 16px; border-radius: 4px; transition: background 0.2s, color 0.2s; }
+        nav a:hover, nav a:focus { background: #f5f5f5; color: #2d3e50; }
+        section { max-width: 700px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 10px; box-shadow: 0 2px 12px rgba(44,62,80,0.07); }
+        h2 { color: #1a73e8; margin-top: 0; }
+        img { display: block; margin: 18px 0; border: 3px solid #1a73e8; border-radius: 8px; box-shadow: 0 2px 12px rgba(26,115,232,0.08); max-width: 100%; height: auto; }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to our website. This is the home section.</p>
+        <img src="imagehome.png" alt="Welcome banner" title="Welcome to our homepage">
+    </section>
+    <section id="about">
+        <h2>About</h2>
+        <p>Learn more about us in this section. We value accessibility and good design.</p>
+        <img src="image1.png" alt="About us" title="About our company">
+    </section>
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p>Check out some of our favorite images below.</p>
+        <img src="image2.png" alt="Gallery image 1" title="Gallery Image 1">
+        <img src="image3.png" alt="Gallery image 2" title="Gallery Image 2">
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Get in touch with us here.</p>
+        <img src="image4.png" alt="Contact section" title="Contact us">
+    </section>
+</body>
+</html>
+
+
