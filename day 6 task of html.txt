@@ -1,0 +1,189 @@
+1. Purpose of <form> in HTML?
+
+Ans: The <form> element is used to collect user input and send it to a server.
+
+Key attributes:
+
+	action → URL where data is sent
+
+	method → How data is sent (GET or POST)
+
+	<form action="/submit" method="POST">
+  	<!-- form inputs go here -->
+	</form>
+
+2. Basic Input Types Practice?
+
+Ans:
+   <form action="practice.html" method="post">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name" />
+      <br />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+      <br />
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" />
+      <br />
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" />
+      <br />
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" />
+      <br />
+      <label for="gender">Gender</label>
+      <input type="radio" id="male" name="gender" />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" />
+      <label for="female">Female</label>
+      <br />
+      <input type="checkbox" id="terms" />
+      <label for="terms">I agree to the terms and conditions</label>
+      <br />
+      <input type="submit" value="Register" />
+    </form>
+
+3.Checkboxes, Radio Buttons, Number Input?
+Ans:
+
+<!-- Radio (single choice) -->
+    <label for="gender">Gender</label>
+    <input type="radio" id="male" name="gender" />
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" />
+    <label for="female">Female</label>
+    <br />
+
+    <!-- Checkbox (multiple choice) -->
+    <h1>Interest</h1>
+    <h2>Select your interests:</h2>
+    <input type="checkbox" id="fullstack" name="fullstack" />
+    <label for="fullstack">Full Stack Developer</label>
+    <br>
+    <input type="checkbox" id="frontend" name="frontend" />
+    <label for="frontend">Frontend Developer</label>
+    <br />
+    <input type="checkbox" id="backend" name="backend" />
+    <label for="backend">Backend Developer</label>       
+    <br>
+    <br>
+
+    <!-- Number Input-->
+    <label for="quantity">Quantity (between 1 and 5):</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="5" />
+
+5. Labels & Accessibility
+
+Ans: 	<label> improves accessibility
+
+	for connects to input id
+
+6. Required Fields + Placeholder
+Ans:
+<form>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name" required >
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" placeholder="Enter your email" required >
+
+  <label for="password">Password:</label>
+  <input type="password" id="password"  placeholder="Enter password" required>
+
+</form>
+7. HTML5 Validation?
+
+Ams: Built-in validation includes:
+
+	type="email" → checks email format
+
+	required → must be filled
+
+	min / max → number limits
+
+	<label for="email">Email</label>
+    	<input type="email" id="email" name="email" placeholder="Enter your email" required maxlength="50" minlength="10"/>
+
+8. Final: Complete Registration Form:
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+    absolute path 
+    <img src="/images/gas image.webp" alt="Welcome banner" />
+    relative path
+    <img src="images/gas image.webp" alt="Welcome banner" />   -->
+    <form action="success.html">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your full name"
+        tabindex="1"
+        required
+      />
+      <br />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email address"
+        tabindex="2"
+        required
+      />
+      <br />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        minlength="6"
+        tabindex="3"
+        required
+      />
+      <br />
+      <label for="gender">Gender</label>
+      <input type="radio" id="male" name="gender" value="male" tabindex="4" required />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" tabindex="5" />
+      <label for="female">Female</label>
+      <input type="radio" id="other" name="gender" value="other" tabindex="6" />
+      <label for="other">Other</label>
+      <br />
+      <label for="hobbies">Hobbies</label>
+      <input type="checkbox" id="reading" name="hobbies" value="reading" tabindex="7" />
+      <label for="reading">Reading</label>
+      <input type="checkbox" id="sports" name="hobbies" value="sports" tabindex="8" />
+      <label for="sports">Sports</label>
+      <input type="checkbox" id="music" name="hobbies" value="music" tabindex="9" />
+      <label for="music">Music</label>
+      <input type="checkbox" id="traveling" name="hobbies" value="traveling" tabindex="10" />
+      <label for="traveling">Traveling</label>
+      <br />
+      <label for="age">Age</label>
+      <input
+        type="number"
+        id="age"
+        name="age"
+        placeholder="Enter your age"
+        min="1"
+        max="120"
+        tabindex="11"
+        required
+      />
+      <br />
+      <input type="submit" value="Register" tabindex="12" />
+    </form>
+  </body>
+</html>
+
