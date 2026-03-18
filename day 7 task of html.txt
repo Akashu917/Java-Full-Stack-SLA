@@ -1,0 +1,228 @@
+1. Difference: <ul> vs <ol>?
+
+Ans: <ul> (Unordered List)
+
+	Displays items with bullets
+
+	Order does NOT matter
+
+Shopping List (<ul>):
+
+	<h2>Shopping List</h2>
+	<ul>
+  	<li>Fruits</li>
+  	<li>Vegetables</li>
+  	<li>Snacks</li>
+	</ul>
+
+Ans: <ol> (Ordered List)
+
+	Displays items with numbers
+
+	Order DOES matter
+
+Steps List (<ol>):
+
+	<h2>Morning Routine</h2>
+	<ol>
+  	<li>Wake up</li>
+  	<li>Exercise</li>
+  	<li>Take a shower</li>
+  	<li>Eat breakfast</li>
+	</ol>
+
+2.Nested Lists (List inside another list)?
+
+Ans:
+<h2>Shopping List with Categories</h2>
+<ul>
+  <li>Fruits
+    <ul>
+      <li>Apple</li>
+      <li>Banana</li>
+    </ul>
+  </li>
+  <li>Vegetables
+    <ul>
+      <li>Carrot</li>
+      <li>Spinach</li>
+    </ul>
+  </li>
+</ul>
+
+3. Basic Table Structure?
+
+Ans: A table is made of:
+
+	<table> → container
+
+	<tr> → table row
+
+	<td> → table data (cells)
+
+<h2>Simple Table</h2>
+<table border="1">
+  <tr>
+    <td>Name</td>
+    <td>Age</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>25</td>
+  </tr>
+</table>
+
+4. Adding Headers with <th>?
+
+Ans: 	<th> = Table Header
+
+	Bold + centered by default
+
+<h2>Table with Headers</h2>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Alice</td>
+    <td>22</td>
+  </tr>
+</table>
+
+Difference: <td> vs <th>?
+
+Ans:
+
+Tag	Meaning	Style   Default
+<td>	Table Data	Normal text
+<th>	Table Header	Bold + centered
+
+5.Practice table attributes: colspan, rowspan, and add borders, cell spacing, and padding with CSS?
+
+Ans:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #eab7b7;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f52121;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>City</th>
+        </tr>
+        <tr>
+            <td>Akash</td>
+            <td>Male</td>
+            <td>20</td>
+            <td>Delhi</td>
+        </tr>
+        <tr>
+            <td>Rohit</td>
+            <td>Male</td>
+            <td>22</td>
+            <td>Mumbai</td>
+        </tr>
+        <tr>
+            <td>Sneha</td>
+            <td>Female</td>
+
+            <td>19</td>
+            <td>Bangalore</td>
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <tr>
+            <th>SI NO</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Apple</td>
+            <td>10</td>
+            <td>$5</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Banana</td>
+            <td>20</td>
+            <td>$10</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Orange</td>
+            <td>15</td>
+            <td>$7.5</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Grapes</td>
+            <td>12</td>
+            <td>$6</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: right;">
+                <b>Total Price</b>
+            </td>
+            
+            <td>$28.5</td>
+        </tr>
+
+    </table>
+    <hr>
+    <table>
+        <tr style="background-color: #f52121; color: #fff;" >
+            <th rowspan="4">Course</th>
+           <th>Types Details</th>
+            <th style="text-align: left;">Instructor</th>
+            <th>Duration</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td >Web Development</td>
+            <td>John Doe</td>
+            <td>3 Months</td>
+            <td>$300</td>
+        </tr>
+        <tr>
+            <td>Data Science</td>
+            <td>Jane Smith</td>
+            <td>4 Months</td>
+            <td>$400</td>
+        </tr>
+        <tr>
+            <td>Graphic Design</td>
+            <td>Emily Johnson</td>
+            <td>2 Months</td>
+            <td>$200</td>
+        </tr>
+    </table>
+
+</body>
+</html>
