@@ -1,0 +1,56 @@
+1.HTML Snippet
+Ans:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selectors Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 id="header">Welcome to My Page</h1>
+
+    <p class="intro">This is an introductory paragraph with italic styling.</p>
+
+    <p>This is a normal paragraph to demonstrate element selector styling.</p>
+
+    <p class="highlight">This paragraph is highlighted with background color.</p>
+
+    <div class="box">
+        <p>This paragraph is inside a box.</p>
+    </div>
+
+</body>
+</html>
+
+2. styles.css
+Ans:
+/* Element selector */
+p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Class selector for intro */
+.intro {
+    font-style: italic;
+}
+
+/* Class selector for highlight */
+.highlight {
+    background-color: #f0f8ff;
+    padding: 8px;
+}
+
+/* ID selector for header */
+#header {
+    color: #2c3e50;
+    font-size: 32px;
+}
+
+/* Additional style for box */
+.box {
+    border: 1px solid #ccc;
+    padding: 16px;
+}

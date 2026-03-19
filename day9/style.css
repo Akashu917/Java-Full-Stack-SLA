@@ -1,0 +1,28 @@
+/* Element selector */
+p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Class selector for intro */
+.intro {
+    font-style: italic;
+}
+
+/* Class selector for highlight */
+.highlight {
+    background-color: #f0f8ff;
+    padding: 8px;
+}
+
+/* ID selector for header */
+#header {
+    color: #2c3e50;
+    font-size: 32px;
+}
+
+/* Additional style for box */
+.box {
+    border: 1px solid #ccc;
+    padding: 16px;
+}
