@@ -1,0 +1,64 @@
+1.HTML File:
+
+Ans:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Methods Demo</title>
+
+    <!-- External CSS Link -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Internal CSS -->
+    <style>
+        .internal {
+            background-color: lightblue;
+            color: darkblue;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid blue;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align:center;">CSS Styling Methods</h1>
+
+    <!-- Inline CSS Section -->
+    <div style="background-color: lightcoral; color: white; padding: 20px; margin: 10px; border: 2px solid red;">
+        <h2>Inline CSS</h2>
+        <p>This section is styled using inline CSS directly inside the HTML element.</p>
+    </div>
+
+    <!-- Internal CSS Section -->
+    <div class="internal">
+        <h2>Internal CSS</h2>
+        <p>This section is styled using internal CSS defined in the &lt;style&gt; tag.</p>
+    </div>
+
+    <!-- External CSS Section -->
+    <div class="external">
+        <h2>External CSS</h2>
+        <p>This section is styled using an external stylesheet.</p>
+    </div>
+
+</body>
+</html>
+
+2. External CSS File:
+
+Ans:
+
+.external {
+    background-color: lightgreen;
+    color: darkgreen;
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid green;
+    font-family: Verdana, sans-serif;
+}
+
+
