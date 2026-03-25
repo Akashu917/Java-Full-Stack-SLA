@@ -1,0 +1,46 @@
+1.sample one:
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.text-style {
+  color: blue;
+  border: 2px solid red;
+}
+
+.background-style {
+  background-color: lightyellow;
+  background-image: url("https://via.placeholder.com/150");
+  background-size: cover;
+}
+
+.font-style {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+}
+
+
+.text-effects {
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<p class="text-style">This is colored text with a border.</p>
+
+<div class="background-style" style="height:150px;">
+  Background color and image applied
+</div>
+
+<p class="font-style">This text uses a different font and size.</p>
+
+<p class="text-effects">This text is bold, italic, and underlined.</p>
+
+</body>
+</html>
