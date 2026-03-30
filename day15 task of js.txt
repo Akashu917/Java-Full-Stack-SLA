@@ -1,0 +1,126 @@
+1. What is JavaScript?
+Ans:
+
+	JavaScript is a programming language used to make web pages interactive. It runs in the browser and allows you to:
+
+	Handle user actions (clicks, typing)
+	Update content dynamically
+	Control multimedia, animations, and more
+
+Simple JavaScript Script:
+
+	alert("Hello, this is a simple JavaScript script!");
+
+2.Add Script Tag in HTML & Print "Hello JS":
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Example</title>
+</head>
+<body>
+
+<h1>Check the page!</h1>
+
+<script>
+    document.write("Hello JS");
+</script>
+
+</body>
+</html>
+
+3.Log Name and Age in Console:
+Ans:
+
+console.log("Name: YourName");
+console.log("Age: 20");
+
+4.Comments in JavaScript:
+Ans:
+
+Single-line comment:
+
+// This is a single-line comment
+console.log("Hello");
+Multi-line comment
+/*
+
+This is a multi-line comment:
+
+It can span multiple lines
+*/
+console.log("Hello again");
+
+5.Integrate HTML with JavaScript:
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KKR vs CSK Theme</title>
+
+    <style>
+       
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #3A225D, #1E0F3F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        
+        .csk-box {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #FFD700, #FFC107);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .csk-box:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 0 40px rgba(255,215,0,0.9);
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            letter-spacing: 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>KKR 💜 vs CSK 💛</h1>
+
+    <div class="csk-box" id="teamBox">
+        CSK
+    </div>
+
+    <script>
+
+        console.log("KKR Theme Loaded");
+        console.log("CSK Box Ready");
+        document.getElementById("teamBox").innerHTML = "CSK 💛";
+        document.getElementById("teamBox").onclick = function() {
+            alert("Whistle Podu! CSK 🔥");
+        };
+    </script>
+
+</body>
+</html>
+
