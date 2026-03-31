@@ -1,0 +1,41 @@
+// 1. Declare variables using var, let, and const
+var name = "Alice";
+let age = 25;
+const isStudent = true;
+
+// 2. Create variables with different data types
+let str = "Hello World";     // string
+let num = 10;               // number
+let bool = false;           // boolean
+let emptyValue = null;      // null
+let notAssigned;            // undefined
+
+// 3. Use operators
+
+// Arithmetic operators
+let sum = num + 5;          // +
+let diff = num - 2;         // -
+let product = num * 3;      // *
+let division = num / 2;     // /
+let remainder = num % 3;    // %
+
+// Comparison operators
+let isEqual = (num == "10");   // true (loose equality)
+let isStrictEqual = (num === "10"); // false (strict equality)
+
+// Logical operators
+let andResult = (num > 5 && age < 30);  // &&
+let orResult = (num < 5 || age < 30);   // ||
+
+// Output results
+console.log("Sum:", sum);
+console.log("Difference:", diff);
+console.log("Product:", product);
+console.log("Division:", division);
+console.log("Remainder:", remainder);
+
+console.log("== :", isEqual);
+console.log("=== :", isStrictEqual);
+
+console.log("AND:", andResult);
+console.log("OR:", orResult);
