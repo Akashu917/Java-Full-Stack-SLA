@@ -1,0 +1,90 @@
+Task 1:
+
+a. Check if a number is positive or negative.
+
+Ans:
+
+let num = -1;
+if (num > 0) {
+    console.log("The number is Positive");
+} else if (num < 0) {
+    console.log("The number is Negative");
+} else {
+    console.log("The number is Zero");
+} 
+
+b. Create a switch to print days of the week.
+
+Ans:
+
+let day = 3; // Example day number (1-7)
+
+switch (day) {
+    case 1:
+        console.log("Sunday");
+        break;
+    case 2:
+        console.log("Monday");
+        break;
+    case 3:
+        console.log("Tuesday");
+        break;
+    case 4:
+        console.log("Wednesday");
+        break;
+    case 5:
+        console.log("Thursday");
+        break;
+    case 6:
+        console.log("Friday");
+        break;
+    case 7:
+        console.log("Saturday");
+        break;
+    default:
+        console.log("Invalid input! Please enter a number between 1 and 7.");
+}
+
+
+Task 2:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boat Crew</title>
+</head>
+<body>
+
+    <!-- Story Line 1 -->
+    <div id="crewDiv">
+        <h2>Crew Members</h2>
+        <ul id="crewList">
+            <li>Jack</li>
+            <li>Alice</li>
+            <li>Bob</li>
+            <li>Emma</li>
+        </ul>
+    </div>
+
+    <!-- Story Line 2 -->
+    <h2>Choose Route</h2>
+    <button onclick="jackRoute()">Ask Jack</button>
+    <button onclick="aliceRoute()">Ask Alice</button>
+
+    <p id="result"></p>
+
+    <script>
+        function jackRoute() {
+            document.getElementById("result").innerText = 
+                "Jack says: Take the north route, it's faster but risky!";
+        }
+
+        function aliceRoute() {
+            document.getElementById("result").innerText = 
+                "Alice says: Take the south route, it's safe but longer.";
+        }
+    </script>
+
+</body>
+</html>
+
