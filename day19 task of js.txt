@@ -1,0 +1,51 @@
+1.write a function to add two numbers.
+
+Ans:
+
+function addNumbers(a, b) {
+    return a + b;
+}
+console.log(addNumbers(5, 3));
+
+2.write a function expression to multiply two numbers.
+
+Ans:
+
+const multiply = function(a, b) {
+    return a * b;
+};
+
+console.log(multiply(4, 5));
+
+3.write an arrow function to subtract two numbers.
+
+Ans:
+
+const subtract = (a, b) => a - b;
+console.log(subtract(10, 4));
+
+4. Function with a parameter and return value:
+
+Ans:
+
+function square(num) {
+    return num * num;
+}
+console.log(square(5));
+
+5. Global vs Local Scope:
+
+Ans:
+
+let globalVar = "I am global"; // Global scope
+
+function showScope() {
+    let localVar = "I am local"; // Local scope
+    console.log(globalVar); // Accessible
+    console.log(localVar);  // Accessible
+}
+
+showScope();
+
+console.log(globalVar); // Accessible
+// console.log(localVar); //localVar is not defined (local to function)
