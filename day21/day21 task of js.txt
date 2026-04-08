@@ -1,0 +1,39 @@
+1. Use map to double all numbers:
+
+Ans:
+
+const arr = [1, 2, 3, 4];
+const doubled = arr.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+
+2. Use filter to get even numbers:
+
+Ans:
+
+const arr = [1, 2, 3, 4, 5, 6];
+const evens = arr.filter(num => num % 2 === 0);
+console.log(evens); // [2, 4, 6]
+
+3. Use reduce to find the sum:
+
+Ans:
+
+const arr = [1, 2, 3, 4];
+const sum = arr.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 10
+
+4. Find the first number greater than 10:
+
+Ans:
+
+const arr = [3, 7, 12, 5, 20];
+const firstGreaterThan10 = arr.find(num => num > 10);
+console.log(firstGreaterThan10); // 12
+
+5. Check if array includes a specific value
+
+Ans:
+
+const arr = [1, 2, 3, 4];
+const hasValue = arr.includes(3);
+console.log(hasValue); // true
