@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Names</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-width: 480px;
+      width: 90%;
+    }
+
+    h2 {
+      color: #2c3e50;
+      font-size: 1.8em;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    #searchBox {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: 1px solid #d1d8e0;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #fafbfc;
+    }
+
+    #searchBox:focus {
+      border-color: #3498db;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    #searchBox::placeholder {
+      color: #7f8c8d;
+    }
+
+    #nameList {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    #nameList li {
+      padding: 12px 16px;
+      background: #ecf0f1;
+      color: #2c3e50;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 4px solid #3498db;
+    }
+
+    #nameList li:hover {
+      background: #d5dbdc;
+      transform: translateX(4px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    #nameList li.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Filter Names</h2>
+
+  <input type="text" id="searchBox" placeholder="Type a name..." onkeyup="filterNames()">
+
+  <ul id="nameList">
+    <li>Arun</li>
+    <li>Divya</li>
+    <li>Karthik</li>
+    <li>Meena</li>
+    <li>Rahul</li>
+  </ul>
+</div>
+
+<script>
+function filterNames() {
+  let input = document.getElementById("searchBox").value.toLowerCase();
+  let items = document.querySelectorAll("#nameList li");
+
+  items.forEach(item => {
+    let text = item.textContent.toLowerCase();
+    item.style.display = text.includes(input) ? "" : "none";
+  });
+}
+</script>
+
+</body>
+</html>

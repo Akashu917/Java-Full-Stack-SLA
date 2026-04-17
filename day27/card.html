@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .movie-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tamil Movies</h1>
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <script>
+        const movies = [
+            {
+                name: "Ponniyin Selvan",
+                image: "img1.webp"
+            },
+            {
+                name: "Master",
+                image: "img2.webp"
+            },
+            {
+                name: "96",
+                image: "img3.webp"
+            },
+            {
+                name: "Kabali",
+                image: "img4.webp"
+            },
+            {
+                name: "Vikram Vedha",
+                image: "img5.webp"
+            },
+            {
+                name: "Mersal",
+                image: "img6.webp"
+            }
+        ];
+
+        const container = document.getElementById('cardsContainer');
+        
+        movies.forEach(movie => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${movie.image}" class="card-image">
+                <div class="movie-name">${movie.name}</div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
