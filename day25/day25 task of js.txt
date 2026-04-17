@@ -1,0 +1,15 @@
+Create a function with default parameter values?
+
+Ans:
+
+const name = "John";
+let age = 25;
+
+// Function with default parameter
+function greet(userName = "Guest", userAge = 18) {
+// Template literals
+  return `Hello ${userName}, you are ${userAge} years old.`;
+}
+
+console.log(greet(name, age));
+console.log(greet()); // uses default values
