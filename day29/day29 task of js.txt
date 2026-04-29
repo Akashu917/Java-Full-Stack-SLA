@@ -1,0 +1,63 @@
+1.Synchronous vs Asynchronous:
+
+Synchronous:
+Ans:
+
+console.log("Start");
+
+console.log("Synchronous task 1");
+console.log("Synchronous task 2");
+
+console.log("End");
+
+Output:
+(runs in order, blocking)
+
+Start
+Synchronous task 1
+Synchronous task 2
+End
+
+asynchronous:
+Ans:
+
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Async task (runs later)");
+}, 2000);
+
+console.log("End");
+
+Output:
+
+Start
+End
+Async task (runs later)
+
+The setTimeout callback runs later, without blocking the main thread
+
+2.Print a Message After 2 Seconds:
+
+Ans:
+
+setTimeout(() => {
+  console.log("This message appears after 2 seconds");
+}, 2000);
+
+
+3.Print a Counter Every 1 Second:
+
+Ans:
+
+let count = 1;
+
+const intervalId = setInterval(() => {
+  console.log("Counter:", count);
+  count++;
+  
+  // Stop after 5 counts (optional)
+  if (count > 5) {
+    clearInterval(intervalId);
+  }
+}, 1000);
