@@ -1,0 +1,55 @@
+1.Promise using asyncawait:
+
+Ans:
+
+ //Function returning a promise
+function fetchData(success) {
+  return new Promise((resolve, reject) = {
+    setTimeout(() = {
+      if (success) {
+        resolve(Data fetched successfully);
+      } else {
+        reject(Error fetching data);
+      }
+    }, 1000);
+  });
+}
+
+ //Using asyncawait
+async function getData() {
+  try {
+    const result = await fetchData(true);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getData();
+2.Save and Remove in localStorage:
+
+Ans:
+
+ //Save value
+localStorage.setItem(username, Alex);
+
+ //Get value
+const user = localStorage.getItem(username);
+console.log(user);
+
+ //Remove value
+localStorage.removeItem(username);
+
+3. Save and Remove in sessionStorage:
+
+Ans:
+
+ //Save value
+sessionStorage.setItem(token, 12345);
+
+// Get value
+const token = sessionStorage.getItem(token);
+console.log(token);
+
+ //Remove value
+sessionStorage.removeItem(token);

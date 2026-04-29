@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="submitBtn" onclick="setUserName()">submit</button>
+    <script>
+        function setUserName() {
+            localStorage.setItem("userName", "akash");
+                const name = localStorage.getItem("userName");
+                console.log(name);
+            sessionStorage.setItem("userName", "dinesh");
+                const name1 = sessionStorage.getItem("userName");
+                console.log(name1);
+        }
+    </script>
+</body>
+</html>
