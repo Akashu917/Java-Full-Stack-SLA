@@ -1,0 +1,52 @@
+1.Online Shopping Project Cart Count Increases :
+
+Ans:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Shopping</title>
+</head>
+<body>
+
+<h2>🛍️ Products</h2>
+
+<button onclick="addToCart('Shoes')">Add Shoes</button>
+<button onclick="addToCart('Shirt')">Add Shirt</button>
+<button onclick="addToCart('Watch')">Add Watch</button>
+
+<h3>Cart Count: <span id="count">0</span></h3>
+
+<script>
+  let cart = [];
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    document.getElementById("count").textContent = cart.length;
+  }
+</script>
+
+</body>
+</html>
+
+2. Function that Accepts a Callback:
+
+Ans:
+
+// Function that accepts a callback
+function performAction(data, callback) {
+  console.log("Data received:", data);
+  callback(data);
+}
+
+// Callback function
+function showMessage(value) {
+  console.log("Callback executed with:", value);
+}
+
+// Call function
+performAction("Order Placed", showMessage);

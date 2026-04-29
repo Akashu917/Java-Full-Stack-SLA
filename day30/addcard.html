@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Shopping</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e8f0ff;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .products-section {
+      margin-bottom: 25px;
+    }
+
+    .products-section p {
+      color: #7f8c8d;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .buttons-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      background-color: #3498db;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .cart-section {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #e74c3c;
+      text-align: center;
+    }
+
+    h3 {
+      color: #2c3e50;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    #count {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .cart-badge {
+      display: inline-block;
+      background-color: #080602;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>🛍️ Products</h2>
+
+  <div class="products-section">
+    <p>Select products to add to your cart</p>
+    <div class="buttons-group">
+      <button onclick="addToCart('Shoes')">👟 Add Shoes</button>
+      <button onclick="addToCart('Shirt')">👕 Add Shirt</button>
+      <button onclick="addToCart('Watch')">⌚ Add Watch</button>
+    </div>
+  </div>
+
+  <div class="cart-section">
+    <h3>🛒 Cart Count: <span class="cart-badge"><span id="count">0</span></span></h3>
+  </div>
+</div>
+
+<script>
+  let cart = [];
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    document.getElementById("count").textContent = cart.length;
+  }
+</script>
+
+</body>
+</html>
