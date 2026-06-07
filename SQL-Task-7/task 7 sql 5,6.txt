@@ -1,0 +1,54 @@
+5. normalization into 2nf
+
+unnormalized table (repeating groups)
+
+order_id	customer_name	product1	product2
+101		arun		laptop		mouse
+102		Priya		mobile		null
+
+2nf tables
+
+customers
+
+customer_id	customer_name
+1		arun
+2		priya
+
+orders
+
+order_id	customer_id
+101		1
+102		2
+
+order_products
+
+order_id	product_name
+101		laptop
+101		mouse
+102		mobile
+
+This removes repeating groups and ensures each non-key attribute depends on the whole key.
+
+6. example of 3nf
+
+table not in 3nf
+
+student_id	student_name	dept_id	dept_name
+1	        ravi		d01	cse
+2	        priya		d02	ece
+
+Here, dept_name depends on dept_id, not directly on student_id (transitive dependency).
+
+3nf tables
+
+students
+
+student_id	student_name	dept_id
+1	        ravi		d01
+2	        priya		d02
+
+departments
+
+dept_id	dept_name
+d01	cse
+d02	ece
