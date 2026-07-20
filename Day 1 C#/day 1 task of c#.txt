@@ -1,0 +1,54 @@
+1.Write a Program in C# to find whether a number is odd or even ?
+
+using System;
+public class ODDorEVEN
+{
+    public static void Main(string[] args)
+    {
+        Console.Write("Enter a Number : ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        if(num % 2 == 0)
+        {
+            Console.WriteLine("Even Number");
+        }S
+        else
+        {
+           Console.WriteLine("Odd Number"); 
+        }
+    }
+}
+
+2.Write a c# program to convert from celcius to franheit and vice versa ?
+
+using System;
+namespace learingc_
+{
+    class Program
+    {
+        static void Main (string[] args)
+        {
+            Console.WriteLine("1.Celsius to Fahrenheit");
+            Console.WriteLine("2.Fahrenheit to Celsius");
+            Console.WriteLine("Enter your choice 1 or 2: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            if(choice == 1)
+            {
+                Console.WriteLine("Enter temperature in Celsius: ");
+                Double c = Convert.ToDouble(Console.ReadLine());
+                Double f = (c * 9/5) + 32;
+                Console.WriteLine("Temperature in Fahrenheit is: " + f);
+            }
+            else if (choice == 2)
+            {
+                Console.WriteLine("Enter temperature in Fahrenheit: ");
+                Double f = Convert.ToDouble(Console.ReadLine());
+                Double c = (f - 32) * 5/9;
+                Console.WriteLine("Temperature in Celsius is: " + c);
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice");
+            }
+        }
+    }
+}
