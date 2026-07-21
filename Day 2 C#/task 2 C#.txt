@@ -1,0 +1,74 @@
+1.Write a C# program to reverse a number ?
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.Write ("Entera Number : ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        int reverse = 0;
+        
+        while (num != 0)
+        {
+            int digit = num % 10;
+            reverse =reverse * 10 + digit ;
+            num = num / 10;
+        }
+        Console.WriteLine("reversed : " + reverse );
+    }
+}
+
+2.Write a c# program to find the largest among three numbers ?
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.Write ("Enter a First Number :");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write ("Enter a Second Number :");
+        int num2 = Convert.ToInt32(Console.ReadLine());
+        Console.Write ("Enter a third Number :");
+        int num3 = Convert.ToInt32(Console.ReadLine());
+        
+        if(num1>=num2 && num1>=num3)
+        {
+          Console.WriteLine("Number 1 is Largest");  
+        }
+        else if(num2>=num1 && num2>=num3)
+        {
+          Console.WriteLine("Number 2 is Largest");  
+        }
+        else if(num3>=num1 && num3>=num2)
+        {
+          Console.WriteLine("Number 3 is Largest");  
+        }
+        else 
+        {
+           Console.WriteLine("invaild or Error");
+        }
+        
+    }
+}
+
+3.Write a program in C# to print multiplication table ?
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.Write("Enter your table number : ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        for (int i=1; i<=10; i++)
+        {
+            Console.WriteLine(i+ "x" + num + "=" + (num * i));
+        }
+        
+    }
+}
