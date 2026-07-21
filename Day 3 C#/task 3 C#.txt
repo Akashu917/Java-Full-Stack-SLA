@@ -1,0 +1,100 @@
+1a.Write a program in C# Sharp to create a function for the sum of two numbers? 
+
+using System;
+
+public class HelloWorld
+{
+    static int sum(int a , int b)
+    {
+        return a+b;
+    }
+    public static void Main(string[] args)
+    {
+        Console.Write ("Enter a First number :");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+        Console.Write ("Enter a Second number :");
+        int num2 = Convert.ToInt32(Console.ReadLine());
+        
+        int result = sum(num1,num2);
+        Console.WriteLine("sum = "+ result);
+        
+        
+    }
+}
+
+2b. Write a program in C# Sharp to create a function to input a string and count the number of spaces within the string?
+
+using System;
+
+class Program
+{
+    static int countSpaces(string str)
+    {
+        int count = 0;
+        foreach (char ch in str)
+        {
+           if (ch ==' ') 
+           {
+               count++;
+           }
+        }
+        return count;
+    }
+    static void Main()
+    {
+        Console.WriteLine ("Enter a String :");
+        string text =(Console.ReadLine());
+        int space = countSpaces(text);
+        Console.WriteLine("Number of a Space = "+space);  
+    }
+}
+
+
+3. Write a program in C# to print a pyramid with star shape?
+using System;
+
+class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.Write ("Enter a number of Rows : ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        
+        for(int i = 1; i <= num; i++)
+        {
+            for(int j=1; j <=num - i; j++)
+            {
+                Console.Write(" ");
+            }
+            for(int k=1; k <=(2 * i-1);k++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+4. Write a C# program Swap two number without 3rd variable in C#?
+
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a First Number :");
+        int a = Convert.ToInt32(Console.ReadLine());
+        
+        Console.Write("Enter a Second Number :");
+        int b = Convert.ToInt32(Console.ReadLine());
+        
+        a = a + b ;
+        b = a - b ;
+        a = a - b ;
+        
+        Console.WriteLine("After Swapping");
+        Console.WriteLine("First Number:" +a);
+        Console.WriteLine("Second Number:" +b);
+    }
+}
