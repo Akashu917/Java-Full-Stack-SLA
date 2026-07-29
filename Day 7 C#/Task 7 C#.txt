@@ -1,0 +1,19 @@
+1.Write a c# program to print factorial of a number?
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a Number: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        long factorial = 1;
+        
+        for(int i=1;i<=num;i++)
+        {
+            factorial = factorial * i;S
+        }
+        Console.WriteLine($"Factorial of {num} is {factorial}");
+    }
+}
