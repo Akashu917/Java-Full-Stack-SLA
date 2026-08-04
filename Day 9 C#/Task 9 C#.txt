@@ -1,0 +1,32 @@
+1. Write a C# program that reads a file path from the user and tries to open the file. Handle exceptions if the file does not exist ?
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.Write("Place the file path :");
+            string path = Console.ReadLine();
+            
+            StreamReader reader = new StreamReader(path);
+            Console.WriteLine("\nFile opened successfully.");
+            Console.WriteLine("File content:");
+            
+            string content = reader.ReadToEnd();
+            Console.WriteLine(content);
+            reader.Close();
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An unexpected error occurred: " + ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("End of Program");
+        }
+    }
+}
