@@ -1,0 +1,245 @@
+1.Write a C# program to create generic /nongeneric List,Hashset,stack,queue,sorted set,Arraylist,Linkedlist 
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class CollectionDemo
+{
+    public void List()
+    {
+        Console.WriteLine("List :");
+        
+        List<int> list = new List<int>();
+        list.Add(10);
+        list.Add(20);
+        list.Add(30);
+        
+        foreach (int i in list)
+        {
+            Console.WriteLine(i);
+        }
+    }
+    public void ArrayList()
+    {
+        Console.WriteLine("\nArryList: ");
+        ArrayList list = new ArrayList();
+        list.Add(10);
+        list.Add("Akash");
+        list.Add(80.5);
+        
+        foreach (var i in list)
+        {
+            Console.WriteLine(i);
+        }
+        
+    }
+    public void Stack()
+    {
+        Console.WriteLine("\nStack :");
+        Stack<string> stack = new Stack<string>();
+        stack.Push("A");
+        stack.Push("B");
+        stack.Push("C");
+        
+        Console.WriteLine(stack.Pop());
+        Console.WriteLine(stack.Pop());
+        Console.WriteLine(stack.Pop());
+        
+    }
+    public void StackDemo()
+    {
+        Console.WriteLine("\nStack Non Generic :");
+        
+        Stack stack = new Stack();
+        stack.Push(100);
+        stack.Push("U");
+        stack.Push("Akash");
+        
+        foreach(var i in stack)
+        {
+            Console.WriteLine(i);
+        }
+    }
+    public void Queue()
+    {
+        Console.WriteLine("\nGeneric Queue :");
+        Queue<int> q = new Queue<int>();
+        q.Enqueue(100);
+        q.Enqueue(200);
+        q.Enqueue(300);
+        
+        while(q.Count > 0)
+        {
+            Console.WriteLine(q.Dequeue());
+        }
+           
+    }
+    public void QueueDemo()
+    {
+        Console.WriteLine("\nQueue Non generic :");
+        Queue q = new Queue();
+        q.Enqueue(10);
+        q.Enqueue("Akash");
+        q.Enqueue(8.2);
+        
+        foreach(var i in q)
+        {
+            Console.WriteLine(i);
+        }
+        
+    }
+    public void SortedSet()
+    {
+        Console.WriteLine("\nGeneric SortedSet :");
+        SortedSet<int> set = new SortedSet<int>();
+        set.Add(50);
+        set.Add(20);
+        set.Add(10);
+        set.Add(30);
+        set.Add(20);
+
+        foreach (int i in set)
+        {
+            Console.WriteLine(i);
+        }
+    }
+    
+    public void HashSet()
+    {
+        Console.WriteLine("\nGeneric HashSet");
+
+        HashSet<int> set = new HashSet<int>();
+        set.Add(100);
+        set.Add(200);
+        set.Add(300);
+        set.Add(100);
+
+        foreach (int i in set)
+        {
+            Console.WriteLine(i);
+        }
+    }
+    
+    public void LinkedList()
+    {
+        Console.WriteLine("\nGeneric LinkedList :");
+        LinkedList<string> list = new LinkedList<string>();
+        list.AddLast("Arun");
+        list.AddLast("Akash");
+        list.AddLast("Aswin");
+
+        foreach (string i in list)
+        {
+            Console.WriteLine(i);
+        }
+    }
+}
+
+    class Program
+{
+    static void Main(string[] args)
+    {
+        CollectionDemo c = new CollectionDemo();
+        c.List();
+        c.ArrayList();
+        c.Stack();
+        c.StackDemo();
+        c.Queue();
+        c.QueueDemo();
+        c.SortedSet();
+        c.HashSet();
+        c.LinkedList();
+    }
+}
+
+2.Write a C# program that takes a sentence as input and counts the frequency of each word using a Dictionary<string, int>. The program should then display the word frequencies.
+using System;
+using System.Collections.Generic;
+
+class WordFrequency
+{
+    public void Dictionary()
+    {
+        Console.Write("Enter a Sentence: ");
+        string sentence = Console.ReadLine();
+        
+        string[] words = sentence.ToLower().Split(' ');
+        
+        Dictionary<string,int> wordCount = new Dictionary<string,int>();
+        
+        foreach(string word in words)
+        {
+            if(wordCount.ContainsKey(word))
+            {
+                wordCount[word]++;
+            }
+            else
+            {
+                wordCount.Add(word,1);
+            }
+        }
+        Console.WriteLine("\nWord Frequencies:");
+        
+        foreach (KeyValuePair<string,int> item in wordCount)
+        {
+            Console.WriteLine(item.Key + " : " + item.Value);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        WordFrequency w = new WordFrequency();
+        w.Dictionary();
+    }
+}
+
+2.write the same program without dictionary.
+
+using System;
+
+class WordFrequency
+{
+    public void WithoutDictionaryDemo()
+    {
+        Console.Write("enter a sentence: ");
+        string sentence = Console.ReadLine();
+
+        string[] words = sentence.ToLower().Split(' ');
+        bool[] visited = new bool[words.Length];
+        Console.WriteLine("\nWord Frequencies:");
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (visited[i])
+            {
+                continue;
+            }
+            
+            int count = 1;
+            for (int j = i + 1; j < words.Length; j++)
+            {
+                if (words[i] == words[j])
+                {
+                    count++;
+                    visited[j] = true;
+                }
+            }
+
+            Console.WriteLine(words[i] + " : " + count);
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        WordFrequency wf = new WordFrequency();
+        wf.WithoutDictionaryDemo();
+        
+    }
+}
