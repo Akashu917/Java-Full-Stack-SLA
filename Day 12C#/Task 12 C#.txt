@@ -1,0 +1,92 @@
+1.Stock Price Alert System ?
+
+using System;
+
+class Stock
+{
+    public string StockName { get; set; }
+
+    private double price;
+
+    // Declare Delegate
+    public delegate void PriceChangedHandler(string stockName, double price);
+
+    // Declare Event
+    public event PriceChangedHandler PriceChanged;
+
+    public double Price
+    {
+        get { return price; }
+
+        set
+        {
+            price = value;
+            if (price > 1000)
+            {
+                OnPriceChanged();
+            }
+        }
+    }
+
+    protected void OnPriceChanged()
+    {
+        if (PriceChanged != null)
+        {
+            PriceChanged(StockName, Price);
+        }
+    }
+}
+class EmailService
+{
+    public void SendEmail(string stockName, double price)
+    {
+        Console.WriteLine("Email Alert:");
+        Console.WriteLine(stockName + " crossed ₹1000.");
+        Console.WriteLine("Current Price : " + price);
+    }
+}
+class SMSService
+{
+    public void SendSMS(string stockName, double price)
+    {
+        Console.WriteLine("SMS Alert:");
+        Console.WriteLine(stockName + " Price = ₹" + price);
+    }
+}
+class LoggingService
+{
+    public void Log(string stockName, double price)
+    {
+        Console.WriteLine("Log:");
+        Console.WriteLine(stockName + " crossed limit at ₹" + price);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Stock stock = new Stock();
+
+        stock.StockName = "TCS";
+
+        EmailService email = new EmailService();
+        SMSService sms = new SMSService();
+        LoggingService log = new LoggingService();
+
+        // Subscribe
+        stock.PriceChanged += email.SendEmail;
+        stock.PriceChanged += sms.SendSMS;
+        stock.PriceChanged += log.Log;
+
+        Console.WriteLine("Updating Price...");
+
+        stock.Price = 900;
+
+        Console.WriteLine();
+
+        stock.Price = 1200;
+
+        Console.ReadLine();
+    }
+}
