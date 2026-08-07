@@ -1,0 +1,53 @@
+1.Implement multithreading in C# using 3 different threads for invoking 3 different methods?
+
+using System;
+using System.Threading;
+
+class Program
+{
+    static void DownloadFile()
+    {
+        Console.WriteLine("Download Task Started");
+
+        Thread.Sleep(2000);
+
+        Console.WriteLine("Download Task Finished");
+    }
+
+    static void SendEmail()
+    {
+        Console.WriteLine("Email Task Started");
+
+        Thread.Sleep(1500);
+
+        Console.WriteLine("Email Task Finished");
+    }
+
+    static void GenerateReport()
+    {
+        Console.WriteLine("Report Task Started");
+
+        Thread.Sleep(3000);
+
+        Console.WriteLine("Report Task Finished");
+    }
+
+    static void Main()
+    {
+        Thread t1 = new Thread(DownloadFile);
+        Thread t2 = new Thread(SendEmail);
+        Thread t3 = new Thread(GenerateReport);
+
+        Console.WriteLine("All Tasks Starting...\n");
+
+        t1.Start();
+        t2.Start();
+        t3.Start();
+
+        t1.Join();
+        t2.Join();
+        t3.Join();
+
+        Console.WriteLine("\nAll Tasks Finished.");
+    }
+}
