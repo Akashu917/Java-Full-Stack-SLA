@@ -1,0 +1,83 @@
+Create a student class with required details like ID,name,DOB,course,contact,add methods for calculating age and add different constructors?
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace task.Constructors
+{
+    class Student
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DateTime DOB { get; set; }
+        public string Course { get; set; }
+        public string Contact { get; set; }
+
+        public Student(int id, string name, DateTime dob, string course, string contact)
+        {
+            ID = id;
+            Name = name;
+            DOB = dob;
+            Course = course;
+            Contact = contact;
+        }
+        public Student(int id, string name, string course)
+        {
+            ID = id;
+            Name = name;
+            Course = course;
+        }
+        public int CalculateAge()
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - DOB.Year;
+
+            if (DOB.Date > today.AddYears(-age))
+            {
+                age--;
+            }
+            return age;
+        }
+        public void Display()
+        {
+            Console.WriteLine("ID      : " + ID);
+            Console.WriteLine("Name    : " + Name);
+            Console.WriteLine("DOB     : " + DOB.ToShortDateString());
+            Console.WriteLine("Course  : " + Course);
+            Console.WriteLine("Contact : " + Contact);
+            Console.WriteLine("Age     : " + CalculateAge());
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            // Using parameterized constructor
+            Student s1 = new Student(
+                101,
+                "Akash",
+                new DateTime(2004,12,28),
+                "Computer Science",
+                "9360305917"
+            );
+
+            s1.Display();
+
+            Console.WriteLine();
+
+            // Using constructor with fewer parameters
+            Student s2 = new Student(
+                102,
+                "Rahul",
+                "Information Technology"
+            );
+
+            s2.DOB = new DateTime(2004, 10, 20);
+            s2.Contact = "9566694981";
+
+            s2.Display();
+        }
+    }
+}
