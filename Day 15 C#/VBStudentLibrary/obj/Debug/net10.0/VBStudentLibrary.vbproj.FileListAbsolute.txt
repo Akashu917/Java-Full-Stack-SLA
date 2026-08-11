@@ -1,0 +1,11 @@
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.AssemblyInfoInputs.cache
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.AssemblyInfo.vb
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.vbproj.CoreCompileInputs.cache
+C:\Users\akash\source\repos\VBStudentLibrary\bin\Debug\net10.0\VBStudentLibrary.deps.json
+C:\Users\akash\source\repos\VBStudentLibrary\bin\Debug\net10.0\VBStudentLibrary.dll
+C:\Users\akash\source\repos\VBStudentLibrary\bin\Debug\net10.0\VBStudentLibrary.pdb
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.dll
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\refint\VBStudentLibrary.dll
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\VBStudentLibrary.pdb
+C:\Users\akash\source\repos\VBStudentLibrary\obj\Debug\net10.0\ref\VBStudentLibrary.dll

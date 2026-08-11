@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../CSharpClient/CSharpClient.csproj" Id="01768a68-5d24-48fd-a08f-eae180667293" />
+  <Project Path="VBStudentLibrary.vbproj" />
+</Solution>
