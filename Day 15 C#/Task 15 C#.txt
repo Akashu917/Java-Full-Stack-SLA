@@ -1,0 +1,96 @@
+1.Create console application using .netframework and core and anlayse the bin folder and using the reflection namespace try to get metadata about different data memebers and member functions?
+
+using System;
+using System.Reflection;
+
+namespace task.Reflection
+{
+    class Student
+    {
+        public int Stud_Id { get; set; }
+
+        public string Stud_Name { get; set; }
+
+        public Student()
+        {
+            Stud_Id = 101;
+            Stud_Name = "akash ";
+        }
+
+        public void DisplayId()
+        {
+            Console.WriteLine("student id is: " + Stud_Id);
+        }
+        public void DisplayName()
+        {
+            Console.WriteLine("student name is: " + Stud_Name);
+        }
+    }
+    internal class ReflectionDemo
+    {
+        public static void Main()
+        {
+            //Student stud = new Student();
+            //stud.DisplayId();
+            //stud.DisplayName();
+
+            Type t = typeof(Student);
+            Console.WriteLine(" CLASS INFORMATION ");
+           
+            Console.WriteLine("\nClass Name : " + t.Name);
+            Console.WriteLine("Namespace  : " + t.Namespace);
+
+            Console.WriteLine("\n PROPERTIES ");
+            PropertyInfo[] PropertyInfos = t.GetProperties();
+
+            foreach (PropertyInfo pi in PropertyInfos )
+            {
+                Console.WriteLine("Property : "+pi.Name + " | Type : "+ pi.PropertyType);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("\n METHODS ");
+
+            MethodInfo[] methodInfos = t.GetMethods();
+
+            foreach (MethodInfo mi in methodInfos)
+            {
+                Console.WriteLine("Method : " + mi.Name +" | Return Type : " + mi.ReturnType);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("\n CONSTRUCTORS");
+
+            ConstructorInfo[] constructorInfos = t.GetConstructors();
+
+            foreach (ConstructorInfo ci in constructorInfos)
+            {
+                Console.WriteLine("Constructor : " + ci);
+            }
+
+            object obj = Activator.CreateInstance(t);// dynamically
+            PropertyInfo propertyInfo = t.GetProperty("Stud_Id");
+            propertyInfo.SetValue(obj, 102);
+            Console.WriteLine(propertyInfo.GetValue(obj));
+
+            
+            PropertyInfo propertyInfo2 = t.GetProperty("Stud_Name");
+            propertyInfo2.SetValue(obj, "Akash");
+            Console.WriteLine(propertyInfo2.GetValue(obj));
+
+            Console.WriteLine();
+
+            MethodInfo methodInfo = t.GetMethod("DisplayId");
+            Console.WriteLine(methodInfo.Invoke(obj, null));
+
+            MethodInfo methodInfo2 = t.GetMethod("DisplayName");
+            Console.WriteLine(methodInfo2.Invoke(obj, null));
+
+            Console.WriteLine();
+
+            Assembly asm = Assembly.GetExecutingAssembly();
+            Console.WriteLine(asm);
+
+        }
+    }
+}
