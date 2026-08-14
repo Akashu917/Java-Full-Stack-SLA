@@ -1,0 +1,23 @@
+
+1.Example for inner join?
+
+select s.stud_id ,s.stud_name,d.dept_name from students s join department d on s.dept_id =d.dept_id;
+
+2.Example for left outer join?
+
+select s.stud_id ,s.stud_name,d.dept_name from students s left join department d on s.dept_id =d.dept_id;
+
+3.Example for right outer join?
+
+select s.stud_id ,s.stud_name,d.dept_name from students s right join department d on s.dept_id =d.dept_id;
+
+
+4.Example for full outer join?
+
+select  s.stud_id ,s.stud_name,d.dept_name from students s full outer join department d on s.dept_id =d.dept_id;
+
+
+5.Example for self join?
+
+select e.name as employee,m.name as manager from employee e left join employee m
+on e.manager_id = m.id;
