@@ -1,0 +1,112 @@
+1.Create store procdure for operations like delete,update and insert for student table.
+INSERT SP:
+
+create procedure sp_insert_student
+    @name varchar(100),
+    @age int,
+    @course varchar(100)
+as
+begin
+    insert into student(name, age, course) values( @name, @age, @course);
+end;
+
+exec sp_insert_student
+    @name = 'akash',
+    @age = 22,
+    @course = 'c#';
+
+UPDATE SP:
+
+create procedure sp_update_student
+    @id int,
+    @name varchar(100),
+    @age int,
+    @course varchar(100)
+as
+begin
+    update student set name = @name,age = @age, course = @course where id = @id;
+end;
+
+exec sp_update_student
+    @id = 1,
+    @name = 'akash u',
+    @age = 23,
+    @course = '.net';
+
+DELETE SP:
+
+create procedure sp_delete_student
+    @id int
+as
+begin
+    delete from student where id = @id;
+end;
+
+
+exec sp_delete_student @id = 1;
+
+2.Create triggers for insert?
+
+create table student_audit
+(
+    audit_id int identity(1,1) primary key,
+    student_id int,
+    student_name varchar(100),
+    inserted_date datetime default getdate()
+);
+
+Insert Trigger :
+
+create trigger trg_student_insert
+on student
+after insert
+as
+begin
+    insert into student_audit(student_id, student_name)
+    select id, name from inserted;
+end;
+
+insert into student(name, age, course)
+values('ram', 21, 'java');
+
+3. HRMS Backend System?
+
+create table departments(id int identity(1,1) primary key, name varchar(100) not null);
+
+-- Unique Index on Department Name --
+create unique index ux_departments_name on departments(name);
+
+-- Create Employees Table --
+
+create table employees( id int identity(1,1) primary key, name varchar(100) not null,
+    		department_id int,salary decimal(10,2),manager_id int,joining_date date,
+		foreign key(department_id)references departments(id),
+		foreign key(manager_id)references employees(id));
+
+-- Create Projects Table --
+
+create table projects ( id int identity(1,1) primary key, name varchar(100) not null, 				start_date date, end_date date);
+
+-- Create Employee_Projects Table--
+
+create table employee_projects(employee_id int,project_id int,allocated_date date,
+				primary key(employee_id, project_id),
+				foreign key(employee_id)references employees(id),
+				foreign key(project_id)references projects(id));
+
+
+
+4.Display the employee's name along with their manager’s name?
+
+select e.name as employee_name,m.name as manager_name from employees e left join 
+employees m on e.manager_id = m.id;
+
+5. Department-wise Total Salary, Average Salary, and Employee Count?
+
+select d.name as department_name, sum(e.salary) as total_salary, avg(e.salary) as average_salary, count(e.id) as employee_count from departments d join employees e
+on d.id = e.department_id group by d.name having count(e.id) > 5;
+
+6. Employees Who Earn More Than Their Department Average Salary?
+
+select e.id, e.name, e.department_id, e.salary from employees e where e.salary >
+(select avg(e2.salary) from employees e2 where e2.department_id = e.department_id );
