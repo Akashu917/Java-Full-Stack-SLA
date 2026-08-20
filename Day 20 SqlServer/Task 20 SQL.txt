@@ -1,0 +1,63 @@
+1. Single Procedure for Insert, Update and Delete?
+
+create table student (id int primary key,name varchar(50),age int);
+
+create procedure sp_student_crud
+    @operation varchar(10),
+    @id int,
+    @name varchar(50) = null,
+    @age int = null
+as
+begin
+    if @operation = 'insert'
+    begin
+        insert into student(id, name, age)values(@id, @name, @age);
+    end
+
+    else if @operation = 'update'
+    begin
+        update student set name = @name,age = @age where id = @id;
+    end
+
+    else if @operation = 'delete'
+    begin
+        delete from student where id = @id;
+    end
+
+    else
+    begin
+        print 'invalid operation';
+    end
+end
+
+exec sp_student_crud 'insert', 1, 'akash', 22;
+
+exec sp_student_crud 'update', 1, 'arun', 23;
+
+exec sp_student_crud 'delete', 1;
+
+2. Generate Employee Code: EMP0001, EMP0002?
+
+create table employee (ename varchar(50),ecode varchar(10),edesignation varchar(50));
+
+create procedure sp_insert_employee
+    @ename varchar(50),
+    @edesignation varchar(50)
+as
+begin
+    declare @ecode varchar(10);
+    declare @next_id int;
+
+    select @next_id = isnull(count(*), 0) + 1 from employee;
+
+    set @ecode = 'EMP' + right('0000' + cast(@next_id as varchar), 4);
+
+    insert into employee(ename, ecode, edesignation) values(@ename, @ecode, @edesignation);
+end
+
+exec sp_insert_employee 'akash', 'developer';
+
+exec sp_insert_employee 'arun', 'tester';
+
+exec sp_insert_employee 'ravi', 'manager';
+
