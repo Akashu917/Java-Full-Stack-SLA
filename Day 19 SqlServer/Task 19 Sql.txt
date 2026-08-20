@@ -1,0 +1,79 @@
+1.Stored procedure: High salary employees?
+
+create procedure sp_get_high_salary_employees
+    @dept_id int,
+    @threshold decimal(10,2)
+as
+begin
+    select name, salary from employees where department_id = @dept_id and salary > threshold;
+end
+
+2. Modify the stored procedure to accept the sorting column and sort order as parameters ?
+
+create procedure sp_get_high_salary_employees_sorted
+    @dept_id int,
+    @threshold decimal(10,2),
+    @sort_column varchar(20),
+    @sort_order varchar(4)
+as
+begin
+    if @sort_column not in ('name', 'salary')
+        set @sort_column = 'name';
+
+    if @sort_order not in ('asc', 'desc')
+        set @sort_order = 'asc';
+
+    declare @sql nvarchar(max);
+
+    set @sql = '
+        select name, salary from employees where department_id = @dept_id and salary  	@threshold order by ' + quotename(@sort_column) + ' ' + @sort_order;
+
+    exec sp_executesql
+        @sql,
+        n'@dept_id int, @threshold decimal(10,2)',
+        @dept_id,
+        @threshold;
+end
+
+3.Index for employee_projects?
+
+create index idx_employee_projects_employee_date on employee_projects
+(employee_id, allocated_date);
+
+4.Latest salary before 2024-12-31?
+
+select employee_id, salary, effective_date from (
+    select employee_id, salary, effective_date, row_number() over ( 
+    partition by employee_id order by effective_date desc ) as rn
+    from salary_history where effective_date < '2024-12-31') as t where rn = 1;
+
+5.Employees working on projects started before 2023-01-01?
+
+select e.name as employee_name,
+       d.name as department_name,
+       p.name as project_name
+from employees e join departments d on e.department_id = d.id
+join employee_projects ep on e.id = ep.employee_id
+join projects p on ep.project_id = p.id where p.start_date < '2023-01-01';
+
+6.Month-wise employees and allocated projects?
+
+select year(ep.allocated_date) as allocation_year,
+       month(ep.allocated_date) as allocation_month,
+       e.id as employee_id,
+       e.name as employee_name,
+       p.id as project_id,
+       p.name as project_name,
+       ep.allocated_date
+from employee_projects ep join employees e on ep.employee_id = e.id
+join projects p on ep.project_id = p.id order by year(ep.allocated_date), month(ep.allocated_date);
+
+7.Convert employee names to comma-separated string?
+
+select string_agg(name, ', ') as employee_names from employees;
+
+declare @employee_names varchar(max);
+
+select @employee_names = string_agg(name, ',') from employees;
+
+select value as employee_name from string_split(@employee_names, ',');
