@@ -1,0 +1,102 @@
+1.using ADO.Net classes connect to DB, perform an insert query on your table retrieve results and populate the controls on the form using Datareader with data from DB?
+
+g System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace Student_Management_system
+{
+    public partial class Form2 : Form
+    {
+        string conStr = @"Data Source=AKASH-U\SQLEXPRESS;Initial Catalog=StudentDB;Integrated Security=True;TrustServerCertificate=True";
+
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        // INSERT
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Insert button working!");
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = @"INSERT INTO Student
+                                     (Id, Name, Age, Course)
+                                     VALUES
+                                     (@Id, @Name, @Age, @Course)";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id",
+                        int.Parse(txtId.Text));
+
+                    cmd.Parameters.AddWithValue("@Name",
+                        txtName.Text);
+
+                    cmd.Parameters.AddWithValue("@Age",
+                        int.Parse(txtAge.Text));
+
+                    cmd.Parameters.AddWithValue("@Course",
+                        txtCourse.Text);
+
+                    con.Open();
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Student inserted successfully");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // RETRIEVE USING DATAREADER
+        private void btnRetrieve_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = "SELECT Id, Name, Age, Course FROM Student";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    con.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.Rows.Clear();
+
+                    dataGridView1.Columns.Add("Id", "ID");
+                    dataGridView1.Columns.Add("Name", "Name");
+                    dataGridView1.Columns.Add("Age", "Age");
+                    dataGridView1.Columns.Add("Course", "Course");
+
+                    while (reader.Read())
+                    {
+                        dataGridView1.Rows.Add(
+                            reader["Id"],
+                            reader["Name"],
+                            reader["Age"],
+                            reader["Course"]
+                        );
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+    }
