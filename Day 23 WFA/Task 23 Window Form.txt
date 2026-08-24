@@ -1,0 +1,71 @@
+1. Create an employee class,create a list(collection) of employees and display the employee details in GRIDVIEW ?
+
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2022
+{
+    public partial class EmployeeForm : Form
+    {
+        public class Employee
+        {
+            public int emp_id { get; set; }
+            public string emp_name { get; set; }
+            public string department { get; set; }
+            public double salary { get; set; }
+        }
+
+        public EmployeeForm()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Employee> listEmp = new List<Employee>();
+
+            listEmp.Add(new Employee
+            {
+                emp_id = 101,
+                emp_name = "Arun",
+                department = "IT",
+                salary = 70000
+            });
+
+            listEmp.Add(new Employee
+            {
+                emp_id = 102,
+                emp_name = "Ajay",
+                department = "HR",
+                salary = 60000
+            });
+
+            listEmp.Add(new Employee
+            {
+                emp_id = 103,
+                emp_name = "Rahul",
+                department = "Finance",
+                salary = 65000
+            });
+
+            listEmp.Add(new Employee
+            {
+                emp_id = 104,
+                emp_name = "Vijay",
+                department = "Sales",
+                salary = 55000
+            });
+
+            listEmp.Add(new Employee
+            {
+                emp_id = 105,
+                emp_name = "Rajesh",
+                department = "IT",
+                salary = 50000
+            });
+
+            gvEmp2.DataSource = listEmp;
+        }
+    }
+}
