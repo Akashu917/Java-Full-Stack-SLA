@@ -1,0 +1,329 @@
+1.create winforms with requires textboxes labels and buttons for CRUD operation(for the student table you have created in DB)
+
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace Student_Management_system
+{
+    public partial class Form1 : Form
+    {
+        string conStr = @"Data Source=AKASH-U\SQLEXPRESS;Initial Catalog=StudentDB;Integrated Security=True;TrustServerCertificate=True";
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // INSERT
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = "INSERT INTO Student VALUES(@Id,@Name,@Age,@Course)";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    cmd.Parameters.AddWithValue("@Age", int.Parse(txtAge.Text));
+                    cmd.Parameters.AddWithValue("@Course", txtCourse.Text);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Inserted Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // UPDATE
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = @"UPDATE Student
+                                     SET Name=@Name, Age=@Age, Course=@Course
+                                     WHERE Id=@Id";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    cmd.Parameters.AddWithValue("@Age", int.Parse(txtAge.Text));
+                    cmd.Parameters.AddWithValue("@Course", txtCourse.Text);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Updated Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // DELETE
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = "DELETE FROM Student WHERE Id=@Id";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Deleted Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // DISPLAY DATA
+        private void LoadData()
+        {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                string query = "SELECT * FROM Student";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        // FORM LOAD
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        // CLEAR METHOD
+        private void ClearData()
+        {
+            txtId.Clear();
+            txtName.Clear();
+            txtAge.Clear();
+            txtCourse.Clear();
+
+            txtId.Focus();
+        }
+
+        // CLEAR BUTTON
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearData();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
+}
+
+2.create a winform like the sample given below with menus and submenus.
+
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace Student_Management_system
+{
+    public partial class Form1 : Form
+    {
+        string conStr = @"Data Source=AKASH-U\SQLEXPRESS;Initial Catalog=StudentDB;Integrated Security=True;TrustServerCertificate=True";
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // INSERT
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = "INSERT INTO Student VALUES(@Id,@Name,@Age,@Course)";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    cmd.Parameters.AddWithValue("@Age", int.Parse(txtAge.Text));
+                    cmd.Parameters.AddWithValue("@Course", txtCourse.Text);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Inserted Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // UPDATE
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = @"UPDATE Student
+                                     SET Name=@Name, Age=@Age, Course=@Course
+                                     WHERE Id=@Id";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    cmd.Parameters.AddWithValue("@Age", int.Parse(txtAge.Text));
+                    cmd.Parameters.AddWithValue("@Course", txtCourse.Text);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Updated Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // DELETE
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string query = "DELETE FROM Student WHERE Id=@Id";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text));
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Student Deleted Successfully");
+
+                    LoadData();
+                    ClearData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // DISPLAY DATA
+        private void LoadData()
+        {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                string query = "SELECT * FROM Student";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        // FORM LOAD
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        // CLEAR METHOD
+        private void ClearData()
+        {
+            txtId.Clear();
+            txtName.Clear();
+            txtAge.Clear();
+            txtCourse.Clear();
+
+            txtId.Focus();
+        }
+
+        // CLEAR BUTTON
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearData();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Student Management System\nVersion 1.0","About");
+        }
+
+        private void addStudentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearData();
+            txtId.Focus();
+        }
+    }
+}
