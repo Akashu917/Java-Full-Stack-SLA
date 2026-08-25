@@ -1,0 +1,67 @@
+1.Using console application perform xml serialization and deserialization for the employee class?
+
+using System;
+using System.IO;
+using System.Xml.Serialization;
+
+namespace XMLSerializationDemo
+{
+    // Employee Class
+    [Serializable]
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Salary { get; set; }
+        public string Department { get; set; }
+
+        // Parameterless constructor is required for XML Serialization
+        public Employee()
+        {
+        }
+
+        public Employee(int id, string name, double salary, string department)
+        {
+            Id = id;
+            Name = name;
+            Salary = salary;
+            Department = department;
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            string filePath = "Employee.xml";
+
+            Employee emp = new Employee(101,"Akash",50000,"IT");
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Employee));
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
+            {
+                serializer.Serialize(fs, emp);
+            }
+
+            Console.WriteLine("Employee object serialized successfully!");
+
+            Employee deserializedEmployee;
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Open))
+            {
+                deserializedEmployee = (Employee)serializer.Deserialize(fs);
+            }
+
+            Console.WriteLine("\nEmployee object deserialized successfully!");
+
+            Console.WriteLine("\nEmployee Details:");
+            Console.WriteLine("ID: " + deserializedEmployee.Id);
+            Console.WriteLine("Name: " + deserializedEmployee.Name);
+            Console.WriteLine("Salary: " + deserializedEmployee.Salary);
+            Console.WriteLine("Department: " + deserializedEmployee.Department);
+
+            Console.ReadLine();
+        }
+    }
+}
