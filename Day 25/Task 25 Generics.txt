@@ -1,0 +1,250 @@
+1.Write a C# program to create generic /nongeneric List,Hashset,stack,queue,sorted set,Arraylist,Linkedlist ?
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace CollectionsDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1. List<T>
+            List<int> numbers = new List<int>();
+            numbers.Add(10);
+            numbers.Add(20);
+            numbers.Add(30);
+
+            Console.WriteLine("Generic List:");
+            foreach (int item in numbers)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 2. HashSet<T>
+            HashSet<int> hashSet = new HashSet<int>();
+            hashSet.Add(10);
+            hashSet.Add(20);
+            hashSet.Add(10); 
+
+            Console.WriteLine("\nGeneric HashSet:");
+            foreach (int item in hashSet)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 3. Stack<T>
+            Stack<string> stack = new Stack<string>();
+            stack.Push("One");
+            stack.Push("Two");
+            stack.Push("Three");
+
+            Console.WriteLine("\nGeneric Stack:");
+            foreach (string item in stack)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 4. Queue<T>
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("Apple");
+            queue.Enqueue("Banana");
+            queue.Enqueue("Mango");
+
+            Console.WriteLine("\nGeneric Queue:");
+            foreach (string item in queue)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 5. SortedSet<T>
+            SortedSet<int> sortedSet = new SortedSet<int>();
+            sortedSet.Add(50);
+            sortedSet.Add(10);
+            sortedSet.Add(30);
+            sortedSet.Add(20);
+
+            Console.WriteLine("\nGeneric SortedSet:");
+            foreach (int item in sortedSet)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 6. LinkedList<T>
+            LinkedList<string> linkedList = new LinkedList<string>();
+            linkedList.AddLast("A");
+            linkedList.AddLast("B");
+            linkedList.AddLast("C");
+
+            Console.WriteLine("\nGeneric LinkedList:");
+            foreach (string item in linkedList)
+            {
+                Console.WriteLine(item);
+            }
+
+            // 7. ArrayList
+            ArrayList arrayList = new ArrayList();
+            arrayList.Add(100);
+            arrayList.Add("Hello");
+            arrayList.Add(25.5);
+
+            Console.WriteLine("\nNon-Generic ArrayList:");
+            foreach (object item in arrayList)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            // 8. Hashtable
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add(1, "Akash");
+            hashtable.Add(2, "Kumar");
+            hashtable.Add(3, "Ravi");
+
+            Console.WriteLine("\nNon-Generic Hashtable:");
+            foreach (DictionaryEntry item in hashtable)
+            {
+                Console.WriteLine(item.Key + " : " + item.Value);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+2.Write a C# program that takes a sentence as input and counts the frequency of each word using a Dictionary<string, int> ?
+
+using System;
+using System.Collections.Generic;
+
+namespace WordFrequency
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine();
+
+            string[] words = sentence.Split(new char[] { ' ', ',', '.', '!', '?' },
+                	     StringSplitOptions.RemoveEmptyEntries);
+
+            Dictionary<string, int> wordCount = new Dictionary<string, int>();
+
+            foreach (string word in words)
+            {
+                string lowerWord = word.ToLower();
+
+                if (wordCount.ContainsKey(lowerWord))
+                {
+                    wordCount[lowerWord]++;
+                }
+                else
+                {
+                    wordCount.Add(lowerWord, 1);
+                }
+            }
+
+            Console.WriteLine("\nWord Frequencies:");
+
+            foreach (KeyValuePair<string, int> item in wordCount)
+            {
+                Console.WriteLine(item.Key + " : " + item.Value);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+The program should then display the word frequencies. write the same program without dictionary ?
+
+using System;
+
+namespace WordFrequencyWithoutDictionary
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine();
+
+            string[] words = sentence.Split(new char[] { ' ', ',', '.', '!', '?' },
+                	     StringSplitOptions.RemoveEmptyEntries);
+
+            Console.WriteLine("\nWord Frequencies:");
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == null)
+                    continue;
+
+                int count = 1;
+
+                for (int j = i + 1; j < words.Length; j++)
+                {
+                    if (words[i].Equals(words[j],
+                        StringComparison.OrdinalIgnoreCase))
+                    {
+                        count++;
+                        words[j] = null;
+                    }
+                }
+
+                Console.WriteLine(words[i] + " : " + count);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+3.Connect a consoleapplication to MYSQL database?
+
+using System;
+using MySql.Data.MySqlClient;
+
+namespace MySqlConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString ="Server=localhost;Database=EmployeeDB;Uid=root;Pwd=your_password;";
+
+            MySqlConnection con = new MySqlConnection(connectionString);
+
+            try
+            {
+                con.Open();
+
+                Console.WriteLine("MySQL Database Connected Successfully!");
+
+                string query = "INSERT INTO Employee(Name, Salary) VALUES('Akash', 25000)";
+
+                MySqlCommand cmd = new MySqlCommand(query, con);
+
+                cmd.ExecuteNonQuery();
+
+                Console.WriteLine("Employee Record Inserted Successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
