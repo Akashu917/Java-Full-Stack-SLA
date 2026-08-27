@@ -1,0 +1,81 @@
+1.Example For Static Class ?
+
+using System;
+static class calculator
+{
+    public static int Add(int a,int b)
+    {
+        return a + b;
+    }
+}
+class program
+{
+    static void Main()
+    {
+        int result = calculator.Add(10,20);
+        Console.WriteLine("Sum : "+result);
+    }
+}
+
+2.Example for out, ref and in parameters ?
+
+using System;
+
+class Program
+{
+    static void GetValues(out int a, out int b)
+    {
+        a = 10;
+        b = 20;
+    }
+
+    static void Main()
+    {
+        int x, y;
+
+        GetValues(out x, out y);
+
+        Console.WriteLine("X = " + x);
+        Console.WriteLine("Y = " + y);
+    }
+}
+
+ref parameter:
+
+using System;
+
+class Program
+{
+    static void ChangeValue(ref int number)
+    {
+        number = number + 10;
+    }
+
+    static void Main()
+    {
+        int num = 20;
+
+        ChangeValue(ref num);
+
+        Console.WriteLine("Value = " + num);
+    }
+}
+
+in parameter:
+
+using System;
+
+class Program
+{
+    static void Display(in int number)
+    {
+        Console.WriteLine("Number = " + number);
+    }
+
+    static void Main()
+    {
+        int num = 50;
+
+        Display(in num);
+    }
+}
