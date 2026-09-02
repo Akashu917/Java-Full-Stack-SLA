@@ -1,0 +1,68 @@
+1.Create a default web application and add webform add basic controls (button controls and list controls)?
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="BasicWebFormsApp.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Basic Web Forms Controls</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <h2>ASP.NET Web Forms - Basic Controls</h2>
+
+        <asp:Label ID="lblTitle" runat="server"
+            Text="Select Your Course:">
+        </asp:Label>
+
+        <br /><br />
+
+        <!-- List Control -->
+        <asp:DropDownList ID="ddlCourse" runat="server" BackColor="#66FFCC">
+            <asp:ListItem>C#</asp:ListItem>
+            <asp:ListItem>Java</asp:ListItem>
+            <asp:ListItem>Python</asp:ListItem>
+            <asp:ListItem>MySql</asp:ListItem>
+        </asp:DropDownList>
+
+        <br /><br />
+
+        <!-- Button Control -->
+        <asp:Button ID="btnSubmit" runat="server"
+            Text="Submit"
+            OnClick="btnSubmit_Click" BackColor="Yellow" />
+
+        <br /><br />
+
+        <!-- ListBox Control -->
+        <asp:ListBox ID="lstSkills" runat="server">
+            <asp:ListItem>HTML</asp:ListItem>
+            <asp:ListItem>CSS</asp:ListItem>
+            <asp:ListItem>JavaScript</asp:ListItem>
+            <asp:ListItem>React</asp:ListItem>
+        </asp:ListBox>
+
+        <br /><br />
+
+        <asp:Button ID="btnShow" runat="server"
+            Text="Show Selected Skill"
+            OnClick="btnShow_Click" />
+
+        <br /><br />
+
+        <asp:Label ID="lblResult" runat="server">
+        
+        </asp:Label>
+        <br /><br />
+        <asp:Label ID="lblResult1" runat="server" ForeColor="#CC66FF" Width="100px">Result</asp:Label>
+
+    </form>
+</body>
+</html>
+
+
