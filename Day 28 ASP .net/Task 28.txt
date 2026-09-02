@@ -1,0 +1,232 @@
+1.Create a webform and validate as shown in the given sample(President election form)
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="PresidentElection.aspx.cs"
+    Inherits="PresidentElection.PresidentElection" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>President Election Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .row {
+            margin-bottom: 15px;
+        }
+
+        .label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .textbox, .dropdown {
+            width: 250px;
+            padding: 7px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+<div class="form-container">
+
+    <h2>President Election Form</h2>
+
+    <!-- Name -->
+    <div class="row">
+        <asp:Label ID="lblName" runat="server"
+            Text="Voter Name:" CssClass="label" />
+
+        <asp:TextBox ID="txtName" runat="server"
+            CssClass="textbox" />
+
+        <asp:RequiredFieldValidator ID="rfvName"
+            runat="server"
+            ControlToValidate="txtName"
+            ErrorMessage="* Name is required"
+            CssClass="error" />
+    </div>
+
+    <!-- Voter ID -->
+    <div class="row">
+        <asp:Label ID="lblVoterID" runat="server"
+            Text="Voter ID:" CssClass="label" />
+
+        <asp:TextBox ID="txtVoterID" runat="server"
+            CssClass="textbox" />
+
+        <asp:RequiredFieldValidator ID="rfvVoterID"
+            runat="server"
+            ControlToValidate="txtVoterID"
+            ErrorMessage="* Voter ID is required"
+            CssClass="error" />
+    </div>
+
+    <!-- Age -->
+    <div class="row">
+        <asp:Label ID="lblAge" runat="server"
+            Text="Age:" CssClass="label" />
+
+        <asp:TextBox ID="txtAge" runat="server"
+            CssClass="textbox" />
+
+        <asp:RequiredFieldValidator ID="rfvAge"
+            runat="server"
+            ControlToValidate="txtAge"
+            ErrorMessage="* Age is required"
+            CssClass="error" />
+
+        <asp:RangeValidator ID="rvAge"
+            runat="server"
+            ControlToValidate="txtAge"
+            MinimumValue="18"
+            MaximumValue="100"
+            Type="Integer"
+            ErrorMessage="* Age must be between 18 and 100"
+            CssClass="error" />
+    </div>
+
+    <!-- Email -->
+    <div class="row">
+        <asp:Label ID="lblEmail" runat="server"
+            Text="Email:" CssClass="label" />
+
+        <asp:TextBox ID="txtEmail" runat="server"
+            CssClass="textbox" />
+
+        <asp:RequiredFieldValidator ID="rfvEmail"
+            runat="server"
+            ControlToValidate="txtEmail"
+            ErrorMessage="* Email is required"
+            CssClass="error" />
+
+        <asp:RegularExpressionValidator ID="revEmail"
+            runat="server"
+            ControlToValidate="txtEmail"
+            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+            ErrorMessage="* Enter a valid email"
+            CssClass="error" />
+    </div>
+
+    <!-- Mobile -->
+    <div class="row">
+        <asp:Label ID="lblMobile" runat="server"
+            Text="Mobile Number:" CssClass="label" />
+
+        <asp:TextBox ID="txtMobile" runat="server"
+            CssClass="textbox" />
+
+        <asp:RequiredFieldValidator ID="rfvMobile"
+            runat="server"
+            ControlToValidate="txtMobile"
+            ErrorMessage="* Mobile number is required"
+            CssClass="error" />
+
+        <asp:RegularExpressionValidator ID="revMobile"
+            runat="server"
+            ControlToValidate="txtMobile"
+            ValidationExpression="^[0-9]{10}$"
+            ErrorMessage="* Enter 10 digit mobile number"
+            CssClass="error" />
+    </div>
+
+    <!-- Candidate -->
+    <div class="row">
+        <asp:Label ID="lblCandidate" runat="server"
+            Text="Candidate:" CssClass="label" />
+
+        <asp:DropDownList ID="ddlCandidate"
+            runat="server" CssClass="dropdown">
+
+            <asp:ListItem Text="-- Select Candidate --"
+                Value="" />
+
+            <asp:ListItem Text="Candidate A"
+                Value="A" />
+
+            <asp:ListItem Text="Candidate B"
+                Value="B" />
+
+            <asp:ListItem Text="Candidate C"
+                Value="C" />
+
+        </asp:DropDownList>
+
+        <asp:RequiredFieldValidator ID="rfvCandidate"
+            runat="server"
+            ControlToValidate="ddlCandidate"
+            InitialValue=""
+            ErrorMessage="* Select a candidate"
+            CssClass="error" />
+    </div>
+
+    <!-- Terms -->
+    <div class="row">
+
+        <asp:CheckBox ID="chkTerms" runat="server"
+            Text=" I agree to the election rules" />
+
+        <asp:CustomValidator ID="cvTerms"
+            runat="server"
+            ErrorMessage="* You must accept the rules"
+            CssClass="error"
+            ClientValidationFunction="validateTerms" />
+
+    </div>
+
+    <!-- Submit -->
+    <div class="row">
+
+        <asp:Button ID="btnSubmit" runat="server"
+            Text="Submit Vote"
+            CssClass="btn"
+            OnClick="btnSubmit_Click" />
+
+    </div>
+
+    <asp:Label ID="lblMessage" runat="server"
+        ForeColor="Green" />
+
+</div>
+
+<script type="text/javascript">
+
+    function validateTerms(source, args) {
+        args.IsValid =
+            document.getElementById('<%= chkTerms.ClientID %>').checked;
+    }
+
+</script>
+
+</form>
+</body>
+</html>
+
