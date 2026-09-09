@@ -1,0 +1,196 @@
+1.create 2 webforms and use different data transfer techniques like query string,cookies and navigation to different pages using server.transfer,server,execute and response.redirect?
+
+page1.aspx -----
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Page1.aspx.cs"
+    Inherits="DataTransferDemo.Page1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Data Transfer - Page 1</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <h2>Data Transfer Techniques</h2>
+
+        <asp:Label ID="Label1" runat="server"
+            Text="Enter Name: ">
+        </asp:Label>
+
+        <asp:TextBox ID="txtName" runat="server">
+        </asp:TextBox>
+
+        <br /><br />
+
+        <asp:Button ID="btnQueryString" runat="server"
+            Text="Query String"
+            OnClick="btnQueryString_Click" />
+
+        <br /><br />
+
+        <asp:Button ID="btnCookie" runat="server"
+            Text="Cookie"
+            OnClick="btnCookie_Click" />
+
+        <br /><br />
+
+        <asp:Button ID="btnRedirect" runat="server"
+            Text="Response.Redirect"
+            OnClick="btnRedirect_Click" />
+
+        <br /><br />
+
+        <asp:Button ID="btnTransfer" runat="server"
+            Text="Server.Transfer"
+            OnClick="btnTransfer_Click" />
+
+        <br /><br />
+
+        <asp:Button ID="btnExecute" runat="server"
+            Text="Server.Execute"
+            OnClick="btnExecute_Click" />
+
+    </form>
+</body>
+</html>
+
+page1.aspx.cs ------
+
+using System;
+using System.Web;
+
+namespace DataTransferDemo
+{
+    public partial class Page1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        // 1. Query String
+        protected void btnQueryString_Click(object sender, EventArgs e)
+        {
+            string name = txtName.Text;
+
+            Response.Redirect("Page2.aspx?name=" + Server.UrlEncode(name));
+        }
+
+        // 2. Cookies
+        protected void btnCookie_Click(object sender, EventArgs e)
+        {
+            HttpCookie cookie = new HttpCookie("UserName");
+
+            cookie.Value = txtName.Text;
+
+            Response.Cookies.Add(cookie);
+
+            Response.Redirect("Page2.aspx");
+        }
+
+        // 3. Response.Redirect
+        protected void btnRedirect_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Page2.aspx");
+        }
+
+        // 4. Server.Transfer
+        protected void btnTransfer_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Page2.aspx");
+        }
+
+        // 5. Server.Execute
+        protected void btnExecute_Click(object sender, EventArgs e)
+        {
+            Server.Execute("Page2.aspx");
+        }
+    }
+}
+
+page2.aspx -----
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Page2.aspx.cs"
+    Inherits="DataTransferDemo.Page2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Data Transfer - Page 2</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <h2>Page 2</h2>
+
+        <asp:Label ID="lblQueryString" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:Label ID="lblCookie" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:Label ID="lblMessage" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:HyperLink ID="HyperLink1" runat="server"
+            NavigateUrl="Page1.aspx"
+            Text="Back to Page 1">
+        </asp:HyperLink>
+
+    </form>
+</body>
+</html>
+
+page2.aspx.cs ------
+
+using System;
+using System.Web;
+
+namespace DataTransferDemo
+{
+    public partial class Page2 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Query String
+            string name = Request.QueryString["name"];
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                lblQueryString.Text ="Query String: " + Server.HtmlEncode(name);
+            }
+            else
+            {
+                lblQueryString.Text ="Query String: No data";
+            }
+
+            // Cookie
+            HttpCookie cookie = Request.Cookies["UserName"];
+
+            if (cookie != null)
+            {
+                lblCookie.Text ="Cookie: " + Server.HtmlEncode(cookie.Value);
+            }
+            else
+            {
+                lblCookie.Text ="Cookie: No data";
+            }
+
+            lblMessage.Text = "You are now on Page 2.";
+        }
+    }
+}
+
