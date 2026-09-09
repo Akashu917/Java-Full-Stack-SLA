@@ -1,0 +1,187 @@
+1.Create two webforms with textbox and button and implement state management techniques like view state,session and application ?
+
+page1.aspx -----
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Page1.aspx.cs"
+    Inherits="StateManagementDemo.Page1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>State Management - Page 1</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <h2>ASP.NET State Management</h2>
+
+        <asp:Label ID="Label1" runat="server"
+            Text="Enter Name: ">
+        </asp:Label>
+
+        <asp:TextBox ID="txtName" runat="server">
+        </asp:TextBox>
+
+        <br /><br />
+
+        <asp:Button ID="btnViewState" runat="server"
+            Text="Save ViewState"
+            OnClick="btnViewState_Click" />
+
+        <asp:Button ID="btnSession" runat="server"
+            Text="Save Session"
+            OnClick="btnSession_Click" />
+
+        <asp:Button ID="btnApplication" runat="server"
+            Text="Save Application"
+            OnClick="btnApplication_Click" />
+
+        <br /><br />
+
+        <asp:Label ID="lblMessage" runat="server"
+            ForeColor="Blue">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:HyperLink ID="HyperLink1" runat="server"
+            NavigateUrl="Page2.aspx"
+            Text="Go to Page 2">
+        </asp:HyperLink>
+
+    </form>
+</body>
+</html>
+
+page1.aspx.cs ------
+
+
+using System;
+
+namespace StateManagementDemo
+{
+    public partial class Page1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        // ViewState
+        protected void btnViewState_Click(object sender, EventArgs e)
+        {
+            ViewState["Name"] = txtName.Text;
+
+            lblMessage.Text =
+                "ViewState saved: " + ViewState["Name"];
+        }
+
+        // Session State
+        protected void btnSession_Click(object sender, EventArgs e)
+        {
+            Session["Name"] = txtName.Text;
+
+            lblMessage.Text =
+                "Session saved: " + Session["Name"];
+        }
+
+        // Application State
+        protected void btnApplication_Click(object sender, EventArgs e)
+        {
+            Application["Name"] = txtName.Text;
+
+            lblMessage.Text =
+                "Application saved: " + Application["Name"];
+        }
+    }
+}
+
+
+page2.aspx ------
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Page2.aspx.cs"
+    Inherits="StateManagementDemo.Page2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>State Management - Page 2</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <h2>State Management - Page 2</h2>
+
+        <asp:Label ID="lblViewState" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:Label ID="lblSession" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:Label ID="lblApplication" runat="server">
+        </asp:Label>
+
+        <br /><br />
+
+        <asp:HyperLink ID="HyperLink1" runat="server"
+            NavigateUrl="Page1.aspx"
+            Text="Go to Page 1">
+        </asp:HyperLink>
+
+    </form>
+</body>
+</html>
+
+page2.aspx.cs -------
+
+
+using System;
+
+namespace StateManagementDemo
+{
+    public partial class Page2 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // ViewState
+            if (Page.PreviousPage != null)
+            {
+                lblViewState.Text =
+                    "ViewState: ViewState belongs to Page 1.";
+            }
+
+            // Session
+            if (Session["Name"] != null)
+            {
+                lblSession.Text =
+                    "Session: " + Session["Name"];
+            }
+            else
+            {
+                lblSession.Text =
+                    "Session: No value found";
+            }
+
+            // Application
+            if (Application["Name"] != null)
+            {
+                lblApplication.Text =
+                    "Application: " + Application["Name"];
+            }
+            else
+            {
+                lblApplication.Text =
+                    "Application: No value found";
+            }
+        }
+    }
+}
