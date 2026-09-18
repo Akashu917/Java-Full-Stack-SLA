@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BookSalesLINQ
+{
+    // Book class
+    class Book
+    {
+        public int BookId { get; set; }
+        public string BookName { get; set; }
+        public string Author { get; set; }
+        public double Price { get; set; }
+    }
+
+    // Sales Details class
+    class SalesDetails
+    {
+        public int SaleId { get; set; }
+        public int BookId { get; set; }
+        public int Quantity { get; set; }
+        public DateTime SaleDate { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Book collection
+            List<Book> books = new List<Book>
+            {
+                new Book { BookId = 1, BookName = "C# Programming", Author = "John", Price = 500 },
+                new Book { BookId = 2, BookName = "ASP.NET Core", Author = "David", Price = 700 },
+                new Book { BookId = 3, BookName = "SQL Server", Author = "Robert", Price = 600 },
+                new Book { BookId = 4, BookName = "React JS", Author = "James", Price = 800 }
+            };
+
+            // Sales collection
+            List<SalesDetails> sales = new List<SalesDetails>
+            {
+                new SalesDetails { SaleId = 101, BookId = 1, Quantity = 2, SaleDate = DateTime.Now },
+                new SalesDetails { SaleId = 102, BookId = 2, Quantity = 3, SaleDate = DateTime.Now },
+                new SalesDetails { SaleId = 103, BookId = 3, Quantity = 1, SaleDate = DateTime.Now },
+                new SalesDetails { SaleId = 104, BookId = 1, Quantity = 4, SaleDate = DateTime.Now }
+            };
+
+            // 1. Display all books
+            var allBooks = from book in books
+                           select book;
+
+            Console.WriteLine("ALL BOOKS");
+            foreach (var book in allBooks)
+            {
+                Console.WriteLine(
+                    book.BookId + " " +
+                    book.BookName + " " +
+                    book.Author + " " +
+                    book.Price);
+            }
+
+            // 2. Find books with price greater than 600
+            var expensiveBooks = from book in books
+                                 where book.Price > 600
+                                 select book;
+
+            Console.WriteLine("\nBOOKS PRICE > 600");
+
+            foreach (var book in expensiveBooks)
+            {
+                Console.WriteLine(book.BookName + " - " + book.Price);
+            }
+
+            // 3. Display sales details
+            var allSales = from sale in sales
+                           select sale;
+
+            Console.WriteLine("\nSALES DETAILS");
+
+            foreach (var sale in allSales)
+            {
+                Console.WriteLine(
+                    "Sale ID: " + sale.SaleId +
+                    ", Book ID: " + sale.BookId +
+                    ", Quantity: " + sale.Quantity);
+            }
+
+            // 4. Join Books and Sales
+            var bookSales = from book in books
+                            join sale in sales
+                            on book.BookId equals sale.BookId
+                            select new
+                            {
+                                BookName = book.BookName,
+                                Quantity = sale.Quantity,
+                                Price = book.Price,
+                                Total = book.Price * sale.Quantity
+                            };
+
+            Console.WriteLine("\nBOOK SALES");
+
+            foreach (var item in bookSales)
+            {
+                Console.WriteLine(
+                    item.BookName +
+                    " | Quantity: " + item.Quantity +
+                    " | Price: " + item.Price +
+                    " | Total: " + item.Total);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
