@@ -1,0 +1,86 @@
+1.Example for OutputCache?
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
+    Inherits="CacheDemo.Default" %>
+
+<%@ OutputCache Duration="60" VaryByParam="None" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Output Cache Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <h2>OutputCache Example</h2>
+
+        <p>
+            Current Time:
+            <asp:Label ID="lblTime" runat="server"></asp:Label>
+        </p>
+
+    </form>
+</body>
+</html>
+
+---- Default.aspx.cs ----
+
+using System;
+
+namespace CacheDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString();
+        }
+    }
+}
+
+2.Example for Cache.Insert?
+
+using System;
+
+namespace CacheDemo
+{
+    public partial class CacheExample : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Cache["Message"] == null)
+            {
+                string message = "Hello, this data is stored in Cache!";
+
+                Cache.Insert("Message", message);
+            }
+
+            lblMessage.Text = Cache["Message"].ToString();
+        }
+    }
+}
+
+---- CacheExample.aspx -----
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="CacheExample.aspx.cs"
+    Inherits="CacheDemo.CacheExample" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Cache.Insert Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <h2>Cache.Insert Example</h2>
+
+        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+
+    </form>
+</body>
+</html>
