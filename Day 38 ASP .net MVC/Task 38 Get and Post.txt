@@ -1,0 +1,109 @@
+1.Add model folder,add create(get and post) methods in contoller and generate the required views ?
+
+Student.cs :
+
+using System;
+
+namespace MVC_WebApp.Models
+{
+    public class Student
+    {
+        public int StudentId { get; set; }
+        public string StudentName { get; set; }
+        public string Department { get; set; }
+        public int Age { get; set; }
+    }
+}
+
+StudentController.cs :
+
+
+using System.Web.Mvc;
+using MVC_WebApp.Models;
+
+namespace MVC_WebApp.Controllers
+{
+    public class StudentController : Controller
+    {
+        // GET: Student/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Student/Create
+        [HttpPost]
+        public ActionResult Create(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                // Save student data here
+
+                return RedirectToAction("Index");
+            }
+
+            return View(student);
+        }
+
+        // GET: Student/Index
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}
+
+Create.cshtml :
+
+@model MVC_WebApp.Models.Student
+
+@{
+    ViewBag.Title = "Create Student";
+}
+
+<h2>Create Student</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(model => model.StudentId)
+        @Html.EditorFor(model => model.StudentId)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.StudentName)
+        @Html.EditorFor(model => model.StudentName)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Department)
+        @Html.EditorFor(model => model.Department)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Age)
+        @Html.EditorFor(model => model.Age)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Create" />
+}
+
+
+Index.cshtml :
+
+@model MVC_WebApp.Models.Student
+
+@{
+    ViewBag.Title = "Student";
+}
+
+<h2>Student Management</h2>
+
+<p>
+    @Html.ActionLink("Create New Student", "Create")
+</p>
+
