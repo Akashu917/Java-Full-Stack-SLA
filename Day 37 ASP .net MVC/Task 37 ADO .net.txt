@@ -1,0 +1,96 @@
+Create a EmployeeController and Model and use ADO.Net to connect to the database and display the details in a view as list?
+
+Controller — EmployeeController.cs:
+
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Web.Mvc;
+using MVC_CRUD.Models;
+
+namespace MVC_CRUD.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public ActionResult Index()
+        {
+            List<Employee> employees = new List<Employee>();
+
+            string cs = ConfigurationManager
+                .ConnectionStrings["DefaultConnection"]
+                .ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT emp_id, emp_name, department, salary FROM employees";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Employee emp = new Employee();
+
+                    emp.Emp_Id = Convert.ToInt32(reader["emp_id"]);
+                    emp.Emp_Name = reader["emp_name"].ToString();
+                    emp.Department = reader["department"].ToString();
+                    emp.Salary = Convert.ToDecimal(reader["salary"]);
+
+                    employees.Add(emp);
+                }
+
+                reader.Close();
+            }
+
+            return View(employees);
+        }
+    }
+}
+
+Model — Employee.cs:
+
+using System;
+
+namespace MVC_CRUD.Models
+{
+    public class Employee
+    {
+        public int Emp_Id { get; set; }
+        public string Emp_Name { get; set; }
+        public string Department { get; set; }
+        public decimal Salary { get; set; }
+    }
+}
+
+Index.cshtml:
+
+@model List<MVC_CRUD.Models.Employee>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+
+<h2>Employee List</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+    </tr>
+
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>@emp.Emp_Id</td>
+            <td>@emp.Emp_Name</td>
+            <td>@emp.Department</td>
+            <td>@emp.Salary</td>
+        </tr>
+    }
+</table>
