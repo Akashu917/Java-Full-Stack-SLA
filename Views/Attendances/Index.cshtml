@@ -1,0 +1,46 @@
+@model IEnumerable<Attendance>
+
+@{
+    ViewData["Title"] = "Attendance";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Attendance Records</h1>
+    <a asp-action="Create" class="btn btn-success">+ New Record</a>
+</div>
+
+<div class="card">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Date</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th style="width:220px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Employee?.Name</td>
+                <td>@item.Employee?.Department</td>
+                <td>@item.Date.ToString("dd-MMM-yyyy")</td>
+                <td>@item.CheckInTime.ToString(@"hh\:mm")</td>
+                <td>@(item.CheckOutTime.HasValue ? item.CheckOutTime.Value.ToString(@"hh\:mm") : "-")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.AttendanceId" class="btn btn-sm btn-outline-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.AttendanceId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AttendanceId" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="6" class="text-center text-muted py-3">No attendance records found.</td></tr>
+        }
+        </tbody>
+    </table>
+</div>

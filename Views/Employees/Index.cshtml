@@ -1,0 +1,53 @@
+@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Employees</h1>
+    <a asp-action="Create" class="btn btn-success">+ New Employee</a>
+</div>
+
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input type="text" name="searchTerm" value="@ViewData["CurrentFilter"]"
+               class="form-control" placeholder="Search by name or department" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-secondary">Search</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+    </div>
+</form>
+
+<div class="card">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.Name)</th>
+                <th>@Html.DisplayNameFor(m => m.Email)</th>
+                <th>@Html.DisplayNameFor(m => m.Department)</th>
+                <th style="width:220px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Department</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-outline-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="4" class="text-center text-muted py-3">No employees found.</td></tr>
+        }
+        </tbody>
+    </table>
+</div>

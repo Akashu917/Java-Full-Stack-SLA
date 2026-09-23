@@ -1,0 +1,3 @@
+@* Client-side validation is already loaded globally in _Layout.cshtml via CDN.
+   This partial exists so Create/Edit views can @await Html.PartialAsync("_ValidationScriptsPartial")
+   in a Scripts section without duplicating script tags, matching standard MVC scaffolding conventions. *@
