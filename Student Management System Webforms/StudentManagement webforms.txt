@@ -1,0 +1,750 @@
+------- Login.aspx ------
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Login.aspx.cs"
+    Inherits="StudentManagement.Login" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Admin Login</title>
+
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+    <div class="login-container">
+
+        <h2 class="login-title">
+            🎓 Student Management
+        </h2>
+
+        <asp:Label ID="lblUsername"
+            runat="server"
+            Text="Username"
+            CssClass="login-label">
+        </asp:Label>
+
+        <asp:TextBox ID="txtUsername"
+            runat="server"
+            CssClass="login-input">
+        </asp:TextBox>
+
+        <br /><br />
+
+        <asp:Label ID="lblPassword"
+            runat="server"
+            Text="Password"
+            CssClass="login-label">
+        </asp:Label>
+
+        <asp:TextBox ID="txtPassword"
+            runat="server"
+            TextMode="Password"
+            CssClass="login-input">
+        </asp:TextBox>
+
+        <asp:Button ID="btnLogin"
+            runat="server"
+            Text="🔐 Login"
+            CssClass="login-button"
+            OnClick="btnLogin_Click" />
+
+        <asp:Label ID="lblMessage"
+            runat="server"
+            CssClass="error-message">
+        </asp:Label>
+
+    </div>
+
+</form>
+
+</body>
+
+-------- Login.aspx.cs ---------
+
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace StudentManagement
+{
+    public partial class Login : System.Web.UI.Page
+    {
+        string cs = ConfigurationManager
+                    .ConnectionStrings["StudentDB"]
+                    .ConnectionString;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = @"select count(*) 
+                                 from Users
+                                 where Username = @Username
+                                 and Password = @Password";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue(
+                    "@Username", txtUsername.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Password", txtPassword.Text.Trim());
+
+                con.Open();
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (count > 0)
+                {
+                    Session["Admin"] = txtUsername.Text.Trim();
+
+                    Response.Redirect("StudentList.aspx");
+                }
+                else
+                {
+                    lblMessage.Text = "Invalid username or password";
+                }
+            }
+        }
+    }
+}
+
+------- StudentList.aspx ------ 
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="StudentList.aspx.cs"
+    Inherits="StudentManagement.StudentList" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Student List</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+<div class="container">
+
+    <div class="top-bar">
+
+        <div>
+            <h1 class="page-title">
+                🎓 Student Management System
+            </h1>
+
+            <asp:Label ID="lblWelcome"
+                runat="server"
+                CssClass="welcome">
+            </asp:Label>
+        </div>
+
+        <div class="actions">
+
+            <asp:Button ID="btnAdd"
+                runat="server"
+                Text="➕ Add Student"
+                CssClass="btn btn-success"
+                OnClick="btnAdd_Click" />
+
+            <asp:Button ID="btnLogout"
+                runat="server"
+                Text="🚪 Logout"
+                CssClass="btn btn-danger"
+                OnClick="btnLogout_Click" />
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <asp:GridView ID="gvStudents"
+        runat="server"
+        AutoGenerateColumns="False"
+        CssClass="student-grid"
+        OnRowCommand="gvStudents_RowCommand">
+
+        <Columns>
+
+            <asp:BoundField
+                DataField="StudentId"
+                HeaderText="ID" />
+
+            <asp:BoundField
+                DataField="Name"
+                HeaderText="Name" />
+
+            <asp:BoundField
+                DataField="Age"
+                HeaderText="Age" />
+
+            <asp:BoundField
+                DataField="Class"
+                HeaderText="Class" />
+
+            <asp:BoundField
+                DataField="Email"
+                HeaderText="Email" />
+
+            <asp:ButtonField
+                Text="✏️ Edit"
+                CommandName="EditStudent"
+                ButtonType="Button" />
+
+            <asp:ButtonField
+                Text="🗑️ Delete"
+                CommandName="DeleteStudent"
+                ButtonType="Button" />
+
+        </Columns>
+
+    </asp:GridView>
+
+</div>
+
+</form>
+
+</body>
+
+--------- StudentList.aspx.cs --------
+
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace StudentManagement
+{
+    public partial class StudentList : System.Web.UI.Page
+    {
+        string cs = ConfigurationManager
+                    .ConnectionStrings["StudentDB"]
+                    .ConnectionString;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Admin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (!IsPostBack)
+            {
+                LoadStudents();
+
+                lblWelcome.Text =
+                    "Welcome, " + Session["Admin"].ToString();
+            }
+        }
+
+        private void LoadStudents()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "select * from Students";
+
+                SqlDataAdapter da =
+                    new SqlDataAdapter(query, con);
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                gvStudents.DataSource = dt;
+                gvStudents.DataBind();
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddStudent.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void gvStudents_RowCommand(
+            object sender,
+            System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+            int studentId = Convert.ToInt32(
+                gvStudents.Rows[rowIndex].Cells[0].Text);
+
+            if (e.CommandName == "EditStudent")
+            {
+                Response.Redirect(
+                    "EditStudent.aspx?id=" + studentId);
+            }
+
+            if (e.CommandName == "DeleteStudent")
+            {
+                DeleteStudent(studentId);
+
+                LoadStudents();
+            }
+        }
+
+        private void DeleteStudent(int studentId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query =
+                    "delete from Students where StudentId = @StudentId";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue(
+                    "@StudentId", studentId);
+
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}
+
+---------- AddStudent.aspx -------
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="AddStudent.aspx.cs"
+    Inherits="StudentManagement.AddStudent" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <title>Add Student</title>
+
+    <link href="style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<form id="form1" runat="server">
+
+<div class="container">
+
+    <h1 class="page-title">
+        ➕ Add New Student
+    </h1>
+
+    <hr />
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Student Name"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtName"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Age"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtAge"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Class"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtClass"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Email"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtEmail"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <asp:Button
+        ID="btnSave"
+        runat="server"
+        Text="💾 Save Student"
+        CssClass="btn btn-success"
+        OnClick="btnSave_Click" />
+
+
+    <asp:Button
+        ID="btnCancel"
+        runat="server"
+        Text="❌ Cancel"
+        CssClass="btn btn-secondary"
+        OnClick="btnCancel_Click" />
+
+    <br /><br />
+
+    <asp:Label
+        ID="lblMessage"
+        runat="server">
+    </asp:Label>
+
+</div>
+
+</form>
+
+</body>
+
+------- AddStudent.aspx.cs --------
+
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace StudentManagement
+{
+    public partial class AddStudent : System.Web.UI.Page
+    {
+        string cs = ConfigurationManager
+                    .ConnectionStrings["StudentDB"]
+                    .ConnectionString;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Admin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = @"insert into Students
+                                (Name, Age, Class, Email)
+                                values
+                                (@Name, @Age, @Class, @Email)";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue(
+                    "@Name", txtName.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Age", Convert.ToInt32(txtAge.Text));
+
+                cmd.Parameters.AddWithValue(
+                    "@Class", txtClass.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Email", txtEmail.Text.Trim());
+
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+
+            Response.Redirect("StudentList.aspx");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StudentList.aspx");
+        }
+    }
+}
+
+------- Edit.aspx ------
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="EditStudent.aspx.cs"
+    Inherits="StudentManagement.EditStudent" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <title>Edit Student</title>
+
+    <link href="style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+<div class="container">
+
+    <h1 class="page-title">
+        ✏️ Edit Student
+    </h1>
+
+    <hr />
+
+    <asp:HiddenField
+        ID="hfStudentId"
+        runat="server" />
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Student Name"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtName"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Age"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtAge"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Class"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtClass"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <asp:Label
+            runat="server"
+            Text="Email"
+            CssClass="form-label">
+        </asp:Label>
+
+        <asp:TextBox
+            ID="txtEmail"
+            runat="server"
+            CssClass="form-input">
+        </asp:TextBox>
+
+    </div>
+
+
+    <asp:Button
+        ID="btnUpdate"
+        runat="server"
+        Text="🔄 Update Student"
+        CssClass="btn btn-warning"
+        OnClick="btnUpdate_Click" />
+
+
+    <asp:Button
+        ID="btnCancel"
+        runat="server"
+        Text="❌ Cancel"
+        CssClass="btn btn-secondary"
+        OnClick="btnCancel_Click" />
+
+</div>
+
+</form>
+
+</body>
+
+---------- EditStudent.aspx.cs ---------
+
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace StudentManagement
+{
+    public partial class EditStudent : System.Web.UI.Page
+    {
+        string cs = ConfigurationManager
+                    .ConnectionStrings["StudentDB"]
+                    .ConnectionString;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Admin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (!IsPostBack)
+            {
+                int studentId =
+                    Convert.ToInt32(Request.QueryString["id"]);
+
+                hfStudentId.Value =
+                    studentId.ToString();
+
+                LoadStudent(studentId);
+            }
+        }
+
+        private void LoadStudent(int studentId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query =
+                    "select * from Students where StudentId = @StudentId";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue(
+                    "@StudentId", studentId);
+
+                con.Open();
+
+                SqlDataReader reader =
+                    cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    txtName.Text =
+                        reader["Name"].ToString();
+
+                    txtAge.Text =
+                        reader["Age"].ToString();
+
+                    txtClass.Text =
+                        reader["Class"].ToString();
+
+                    txtEmail.Text =
+                        reader["Email"].ToString();
+                }
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int studentId =
+                Convert.ToInt32(hfStudentId.Value);
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = @"update Students
+                                 set Name = @Name,
+                                     Age = @Age,
+                                     Class = @Class,
+                                     Email = @Email
+                                 where StudentId = @StudentId";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue(
+                    "@Name", txtName.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Age", Convert.ToInt32(txtAge.Text));
+
+                cmd.Parameters.AddWithValue(
+                    "@Class", txtClass.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Email", txtEmail.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@StudentId", studentId);
+
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+
+            Response.Redirect("StudentList.aspx");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StudentList.aspx");
+        }
+    }
+}
+
