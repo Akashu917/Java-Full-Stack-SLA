@@ -1,0 +1,173 @@
+﻿@model StudentManagementMVC.Models.Student
+
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-warning">
+            <h3>Edit Student</h3>
+        </div>
+
+        <div class="card-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(m => m.StudentId)
+
+                @Html.ValidationSummary(
+                    true,
+                    "",
+                    new { @class = "text-danger" })
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Name)
+
+                        @Html.TextBoxFor(
+                            m => m.Name,
+                            new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(
+                            m => m.Name,
+                            "",
+                            new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Age)
+
+                        @Html.TextBoxFor(
+                            m => m.Age,
+                            new
+                            {
+                                @class = "form-control",
+                                type = "number"
+                            })
+
+                        @Html.ValidationMessageFor(
+                            m => m.Age,
+                            "",
+                            new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Gender)
+
+                        <div>
+
+                            <label class="me-3">
+                                @Html.RadioButtonFor(
+                                    m => m.Gender,
+                                    "Male")
+                                Male
+                            </label>
+
+                            <label>
+                                @Html.RadioButtonFor(
+                                    m => m.Gender,
+                                    "Female")
+                                Female
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Email)
+
+                        @Html.TextBoxFor(
+                            m => m.Email,
+                            new
+                            {
+                                @class = "form-control",
+                                type = "email"
+                            })
+
+                        @Html.ValidationMessageFor(
+                            m => m.Email,
+                            "",
+                            new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Phone)
+
+                        @Html.TextBoxFor(
+                            m => m.Phone,
+                            new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        @Html.LabelFor(m => m.Department)
+
+                        @Html.DropDownListFor(
+                            m => m.Department,
+                            new SelectList(new[]
+                            {
+                                "Computer Science",
+                                "Information Technology",
+                                "Electronics",
+                                "Mechanical",
+                                "Civil"
+                            }),
+                            "Select Department",
+                            new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+
+                        @Html.LabelFor(m => m.Address)
+
+                        @Html.TextAreaFor(
+                            m => m.Address,
+                            new
+                            {
+                                @class = "form-control",
+                                rows = 4
+                            })
+
+                    </div>
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-warning">
+                    Update Student
+                </button>
+
+                @Html.ActionLink(
+                    "Cancel",
+                    "Index",
+                    null,
+                    new { @class = "btn btn-secondary" })
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

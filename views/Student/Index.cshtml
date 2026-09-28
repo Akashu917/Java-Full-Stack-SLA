@@ -1,0 +1,130 @@
+﻿@model IEnumerable<StudentManagementMVC.Models.Student>
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<div class="container mt-4">
+
+    <div class="page-header">
+        <h2>Student Management</h2>
+        <p>Manage student records</p>
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-8">
+
+            @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+            {
+                <div class="input-group">
+
+                    @Html.TextBox(
+                        "search",
+                        null,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Search by name, email or department"
+                        })
+
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                    </button>
+
+                </div>
+            }
+
+        </div>
+
+        <div class="col-md-4 text-end">
+
+            @Html.ActionLink(
+                " + Add Student",
+                "Create",
+                "Student",
+                null,
+                new { @class = "btn btn-success" })
+
+        </div>
+
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.StudentId</td>
+
+                        <td>@item.Name</td>
+
+                        <td>@item.Age</td>
+
+                        <td>@item.Gender</td>
+
+                        <td>@item.Email</td>
+
+                        <td>@item.Phone</td>
+
+                        <td>@item.Department</td>
+
+                        <td>
+
+                            @Html.ActionLink(
+                                "Details",
+                                "Details",
+                                new { id = item.StudentId },
+                                new { @class = "btn btn-info btn-sm" })
+
+                            @Html.ActionLink(
+                                "Edit",
+                                "Edit",
+                                new { id = item.StudentId },
+                                new { @class = "btn btn-warning btn-sm" })
+
+                            @Html.ActionLink(
+                                "Delete",
+                                "Delete",
+                                new { id = item.StudentId },
+                                new { @class = "btn btn-danger btn-sm" })
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

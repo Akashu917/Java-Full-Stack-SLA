@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Admin Login";
+}
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <div class="login-header">
+
+            <h2>Student Management</h2>
+
+            <p>Admin Login</p>
+
+        </div>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.Error
+                </div>
+            }
+
+            <div class="mb-3">
+
+                <label>Username</label>
+
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       placeholder="Enter username"
+                       required />
+
+            </div>
+
+            <div class="mb-3">
+
+                <label>Password</label>
+
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       placeholder="Enter password"
+                       required />
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+
+                Login
+
+            </button>
+        }
+
+    </div>
+
+</div>

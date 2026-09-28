@@ -1,0 +1,103 @@
+﻿@model StudentManagementMVC.Models.Student
+
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+
+            <h3>Student Details</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-3">
+                    Student ID
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.StudentId
+                </dd>
+
+                <dt class="col-sm-3">
+                    Name
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Name
+                </dd>
+
+                <dt class="col-sm-3">
+                    Age
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Age
+                </dd>
+
+                <dt class="col-sm-3">
+                    Gender
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Gender
+                </dd>
+
+                <dt class="col-sm-3">
+                    Email
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Email
+                </dd>
+
+                <dt class="col-sm-3">
+                    Phone
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Phone
+                </dd>
+
+                <dt class="col-sm-3">
+                    Department
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Department
+                </dd>
+
+                <dt class="col-sm-3">
+                    Address
+                </dt>
+
+                <dd class="col-sm-9">
+                    @Model.Address
+                </dd>
+
+            </dl>
+
+            @Html.ActionLink(
+                "Edit",
+                "Edit",
+                new { id = Model.StudentId },
+                new { @class = "btn btn-warning" })
+
+            @Html.ActionLink(
+                "Back to List",
+                "Index",
+                null,
+                new { @class = "btn btn-secondary" })
+
+        </div>
+
+    </div>
+
+</div>
